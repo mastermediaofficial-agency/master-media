@@ -30,25 +30,45 @@ const NAV_ITEMS: NavItem[] = [
 
 export default function Header() {
   const pathname = usePathname();
+
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [scrollDir, setScrollDir] = useState<"up" | "down">("down");
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => {
+      const currentY = window.scrollY;
+
+      if (currentY < lastScrollY) {
+        setScrollDir("up");
+      } else {
+        setScrollDir("down");
+      }
+
+      setLastScrollY(currentY);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
     <>
       {/* HEADER */}
       <header className="fixed top-0 z-50 w-full">
         <div
-          className={`mx-auto mt-4 max-w-7xl px-4 transition-all duration-300 ${
-            scrolled ? "mt-2" : ""
-          }`}
+          className={`mx-auto max-w-7xl px-4 transition-all duration-500 ease-out
+          ${scrollDir === "up" ? "mt-2 scale-[1.01]" : "mt-4 scale-100"}`}
         >
-          <div className="flex h-18 items-center justify-between bg-white rounded-2xl border border-black/5 px-6 shadow-sm backdrop-blur-lg">
+          <div
+            className={`flex h-18 items-center justify-between rounded-2xl border px-6 backdrop-blur-lg
+            transition-all duration-500 ease-out
+            ${
+              scrollDir === "up"
+                ? "bg-white/90 shadow-md"
+                : "bg-white shadow-sm"
+            }`}
+          >
             {/* LOGO */}
             <Link href="/" className="relative h-full w-24">
               <Image
@@ -69,9 +89,8 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`group relative flex items-center gap-2 text-sm font-medium transition ${
-                      active ? "text-black" : "text-gray-600"
-                    } hover:text-black`}
+                    className={`group relative flex items-center gap-2 text-sm font-medium transition
+                    ${active ? "text-black" : "text-gray-600 hover:text-black"}`}
                   >
                     <span
                       className={`text-base transition-transform ${
@@ -84,11 +103,8 @@ export default function Header() {
                     <span>{item.label}</span>
 
                     <span
-                      className={`absolute -bottom-1 left-0 h-[2px] w-full origin-left bg-blue-600 transition-transform duration-300 ${
-                        active
-                          ? "scale-x-100"
-                          : "scale-x-0 group-hover:scale-x-100"
-                      }`}
+                      className={`absolute -bottom-1 left-0 h-0.5 w-full origin-left bg-blue-600 transition-transform duration-300
+  ${active ? "scale-x-100" : "scale-x-0"}`}
                     />
                   </Link>
                 );
@@ -98,7 +114,8 @@ export default function Header() {
             {/* CTA */}
             <Link
               href="/contact"
-              className="hidden lg:inline-flex items-center rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+              className="hidden lg:inline-flex items-center rounded-xl bg-primary px-5 py-2.5
+              text-sm font-semibold text-white transition hover:bg-primary/90 hover:shadow-lg"
             >
               Get In Touch
             </Link>
@@ -116,17 +133,16 @@ export default function Header() {
 
       {/* OVERLAY */}
       <div
-        className={`fixed inset-0 z-40 bg-black/40 transition-opacity ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-40 bg-black/40 transition-opacity
+        ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
         onClick={() => setOpen(false)}
       />
 
       {/* MOBILE DRAWER */}
       <aside
-        className={`fixed right-0 top-0 z-50 h-full w-70 bg-white p-6 shadow-xl transition-transform duration-300 ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed right-0 top-0 z-50 h-full w-72 bg-white p-6 shadow-xl
+        transition-transform duration-300
+        ${open ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="flex items-center justify-between">
           <span className="text-lg font-semibold">Menu</span>
@@ -144,9 +160,8 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={`flex items-center gap-3 text-sm font-medium ${
-                  active ? "text-black" : "text-gray-600"
-                }`}
+                className={`flex items-center gap-3 text-sm font-medium
+                ${active ? "text-black" : "text-gray-600"}`}
               >
                 <span className="text-lg">{item.icon}</span>
                 {item.label}
@@ -156,7 +171,9 @@ export default function Header() {
 
           <Link
             href="/contact"
-            className="mt-6 inline-flex justify-center rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white"
+            onClick={() => setOpen(false)}
+            className="mt-6 inline-flex justify-center rounded-xl bg-blue-600
+            px-4 py-3 text-sm font-semibold text-white"
           >
             Get In Touch
           </Link>

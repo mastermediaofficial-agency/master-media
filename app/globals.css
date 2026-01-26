@@ -3,11 +3,29 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Primary Blues */
+  --color-primary: #324dd3;
+  --color-primary-dark: #28377d;
+  --color-primary-light: #566bd6;
+
+  /* Neutrals */
+  --color-gray: #9f9f9f;
+  --color-black: #000000;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-light: var(--color-primary-light);
+
+  /* neutrals */
+  --color-gray: var(--color-gray);
+  --color-black: var(--color-black);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
