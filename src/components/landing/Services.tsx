@@ -24,7 +24,8 @@ const services: Service[] = [
     title: "Social Media Management",
     icon: FaBullhorn,
     tagline: "We make your feed less embarrassing",
-    hoverText: "Posting consistently since... well, we actually do it consistently.",
+    hoverText:
+      "Posting consistently since... well, we actually do it consistently.",
     color: "#324dd3",
   },
   {
@@ -45,7 +46,8 @@ const services: Service[] = [
     title: "Website Development",
     icon: FaLaptopCode,
     tagline: "Code that works (most of the time)",
-    hoverText: "Responsive, fast, and it even works on Internet Explorer... just kidding.",
+    hoverText:
+      "Responsive, fast, and it even works on Internet Explorer... just kidding.",
     color: "#324dd3",
   },
   {
@@ -64,7 +66,6 @@ const services: Service[] = [
   },
 ];
 
-
 interface ServiceCard3DProps {
   title: string;
   icon: IconType;
@@ -74,13 +75,13 @@ interface ServiceCard3DProps {
   index: number;
 }
 
-const ServiceCard3D = ({ 
-  title, 
-  icon: Icon, 
-  tagline, 
-  hoverText, 
-  color, 
-  index 
+const ServiceCard3D = ({
+  title,
+  icon: Icon,
+  tagline,
+  hoverText,
+  color,
+  index,
 }: ServiceCard3DProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -131,10 +132,10 @@ const ServiceCard3D = ({
       initial={{ opacity: 0, y: 50, rotateX: -10 }}
       whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         delay: index * 0.1,
-        ease: [0.25, 0.1, 0.25, 1] 
+        ease: [0.25, 0.1, 0.25, 1],
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
@@ -165,7 +166,8 @@ const ServiceCard3D = ({
         className="relative min-w-[280px] sm:min-w-[320px] h-[360px] rounded-3xl border-2 overflow-hidden"
         style={{
           borderColor: isHovered ? color : "rgba(255,255,255,0.1)",
-          background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
           backdropFilter: "blur(10px)",
           transformStyle: "preserve-3d",
         }}
@@ -182,7 +184,7 @@ const ServiceCard3D = ({
         />
 
         {/* Content */}
-        <div className="relative z-10 h-full p-8 flex flex-col justify-between">
+        <div className="relative z-10 h-full p-8 flex flex-col">
           {/* Icon with 3D effect */}
           <motion.div
             animate={{
@@ -197,8 +199,8 @@ const ServiceCard3D = ({
               className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6"
               style={{
                 backgroundColor: color,
-                boxShadow: isHovered 
-                  ? `0 20px 40px ${color}40` 
+                boxShadow: isHovered
+                  ? `0 20px 40px ${color}40`
                   : "0 10px 20px rgba(0,0,0,0.2)",
               }}
               animate={{
@@ -216,7 +218,7 @@ const ServiceCard3D = ({
 
           {/* Title */}
           <div style={{ transform: "translateZ(30px)" }}>
-            <h3 
+            <h3
               className="text-2xl font-bold mb-3"
               style={{ color: "#171717" }}
             >
@@ -225,13 +227,13 @@ const ServiceCard3D = ({
 
             {/* Tagline */}
             <motion.p
-              className="text-base mb-4"
-              style={{ 
+              className="text-base"
+              style={{
                 color: "#9f9f9f",
                 transform: "translateZ(20px)",
               }}
               animate={{
-                opacity: isHovered ? 0 : 1,
+                // opacity: isHovered ? 0 : 1,
                 y: isHovered ? -10 : 0,
               }}
             >
@@ -240,8 +242,8 @@ const ServiceCard3D = ({
 
             {/* Hover text */}
             <motion.p
-              className="text-base font-medium absolute"
-              style={{ 
+              className="text-base font-medium"
+              style={{
                 color: color,
                 transform: "translateZ(25px)",
               }}
@@ -254,21 +256,6 @@ const ServiceCard3D = ({
               {hoverText}
             </motion.p>
           </div>
-
-          {/* Secret easter egg */}
-          <motion.div
-            className="absolute bottom-4 right-4 text-xs"
-            style={{ 
-              color: "#9f9f9f",
-              transform: "translateZ(15px)",
-            }}
-            animate={{
-              opacity: showSecret ? 1 : 0.3,
-              scale: showSecret ? 1.2 : 1,
-            }}
-          >
-            {showSecret ? "🎉 You found it!" : "👆 Click me"}
-          </motion.div>
         </div>
 
         {/* Decorative elements */}
@@ -369,18 +356,17 @@ const Services = () => {
           >
             SERVICES
           </motion.div>
-          <h2 
+          <h2
             className="text-5xl sm:text-6xl lg:text-7xl font-black mb-4"
-            style={{ 
+            style={{
               color: "#171717",
               fontFamily: "'Helvetica Neue', sans-serif",
               letterSpacing: "-0.02em",
             }}
           >
-            What We Do{" "}
-            <span style={{ color: "#324dd3" }}>Best</span>
+            What We Do <span style={{ color: "#324dd3" }}>Best</span>
           </h2>
-          <p 
+          <p
             className="text-lg sm:text-xl max-w-2xl mx-auto"
             style={{ color: "#9f9f9f" }}
           >
@@ -402,7 +388,7 @@ const Services = () => {
           >
             {services.map((s, i) => (
               <div key={i} className="snap-center flex-shrink-0">
-                <ServiceCard3D 
+                <ServiceCard3D
                   title={s.title}
                   icon={s.icon}
                   tagline={s.tagline}
@@ -413,10 +399,7 @@ const Services = () => {
               </div>
             ))}
           </motion.div>
-          <p 
-            className="text-center text-sm mt-4"
-            style={{ color: "#9f9f9f" }}
-          >
+          <p className="text-center text-sm mt-4" style={{ color: "#9f9f9f" }}>
             ← Swipe to explore →
           </p>
         </div>
@@ -430,7 +413,7 @@ const Services = () => {
           }}
         >
           {services.map((s, i) => (
-            <ServiceCard3D 
+            <ServiceCard3D
               key={i}
               title={s.title}
               icon={s.icon}
@@ -450,10 +433,7 @@ const Services = () => {
           transition={{ delay: 0.8 }}
           className="text-center mt-16"
         >
-          <p 
-            className="text-sm"
-            style={{ color: "#9f9f9f" }}
-          >
+          <p className="text-sm" style={{ color: "#9f9f9f" }}>
             Need something custom? Were flexible like yoga instructors.{" "}
             <motion.span
               whileHover={{ scale: 1.1, color: "#324dd3" }}
