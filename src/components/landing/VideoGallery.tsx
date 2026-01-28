@@ -81,7 +81,9 @@ export default function VideoGallery() {
                 className="group relative overflow-hidden rounded-3xl bg-black shadow-xl"
               >
                 <video
-                  ref={(el) => (videoRefs.current[index] = el)}
+                  ref={(el) => {
+                    if (el) videoRefs.current[index] = el;
+                  }}
                   src={video.src}
                   muted
                   loop
