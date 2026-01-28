@@ -11,8 +11,8 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="relative bg-primary-dark text-white font-sans">
-      <div className="mx-auto max-w-[1600px] px-6 pt-10 pb-5">
+    <footer className="relative bg-primary-dark text-white font-sans overflow-hidden">
+      <div className="mx-auto max-w-400 px-6 pt-10 pb-5">
         {/* TOP GRID */}
         <div className="flex flex-col gap-12 lg:flex-row lg:gap-5 lg:justify-between">
           {/* INTRO */}
@@ -89,7 +89,7 @@ export default function Footer() {
             </div>
 
             {/* SOCIALS */}
-            <div>
+            <div className="flex flex-col items-center">
               <p className="mb-4 text-lg uppercase tracking-wider font-bold text-gray-300">
                 Follow Us
               </p>

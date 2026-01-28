@@ -25,7 +25,7 @@ export default function Hero() {
 
   return (
     <section
-      className={`relative min-h-screen flex items-center justify-center transition-colors duration-300 ${getBgColor()}`}
+      className={`relative min-h-screen overflow-hidden flex items-center justify-center transition-colors duration-300  ${getBgColor()}`}
     >
       <div className="px-6 max-w-400 text-black">
         <div className="text-center">

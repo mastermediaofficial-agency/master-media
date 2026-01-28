@@ -11,7 +11,6 @@ import {
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
-// Define the service type
 interface Service {
   title: string;
   icon: IconType;
@@ -65,7 +64,7 @@ const services: Service[] = [
   },
 ];
 
-/* ---------------- 3D CARD WITH PHYSICS ---------------- */
+
 interface ServiceCard3DProps {
   title: string;
   icon: IconType;
@@ -150,7 +149,6 @@ const ServiceCard3D = ({
       }}
       className="relative cursor-pointer rounded-3xl border-2 border-gray-600/10"
     >
-      {/* Glow effect */}
       <motion.div
         className="absolute inset-0 rounded-3xl blur-xl opacity-0"
         animate={{

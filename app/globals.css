@@ -9,6 +9,7 @@
   --color-primary-dark: #28377d;
   --color-primary-light: #566bd6;
 
+  --color-primary-darker: #213d77;
   /* Neutrals */
   --color-gray: #9f9f9f;
   --color-black: #000000;
@@ -44,3 +45,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
+
+
+
