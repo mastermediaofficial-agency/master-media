@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { FaRegCirclePlay } from "react-icons/fa6";
 
 interface VideoItem {
   id: number;
@@ -50,29 +51,21 @@ const VideoGallery: React.FC = () => {
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
   }, []);
-  function playActiveVideo(activeIndex: number) {
+
+  const playActiveVideo = (index: number) => {
     videoRefs.current.forEach((video, i) => {
       if (!video) return;
 
-      const shouldPlay = i === activeIndex;
-
-      if (shouldPlay) {
-        if (video.paused) {
-          video.muted = true;
-          video.playsInline = true;
-
-          video.play().catch(() => {
-            // ignore autoplay / interruption warnings
-          });
-        }
+      if (i === index) {
+        video.muted = true;
+        video.playsInline = true;
+        video.play().catch(() => {});
       } else {
-        if (!video.paused) {
-          video.pause();
-        }
+        video.pause();
         video.currentTime = 0;
       }
     });
-  }
+  };
 
   // Pause all videos when modal opens
   useEffect(() => {
@@ -87,17 +80,17 @@ const VideoGallery: React.FC = () => {
   }, [zoomIndex]);
 
   return (
-    <section className="relative py-20 bg-background">
+    <section className="relative py-10 lg:py-20 bg-primary-dark">
       <div className="mb-14 text-center">
-        <h2 className="text-4xl font-semibold text-primary-dark">
+        <h2 className="font-48 font-extrabold text-black ">
           Impact in Action: Gallery
         </h2>
-        <p className="mt-4 text-gray-600 max-w-xl mx-auto">
+        <p className="mt-2 font-20 text-white max-w-3xl mx-auto">
           A glimpse into our impactful work and the communities we serve.
         </p>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-4 md:px-10">
+      <div className="max-w-400 mx-auto px-4 md:px-10">
         {/* Main Swiper */}
         <Swiper
           modules={[Pagination, Autoplay, EffectCoverflow]}
@@ -119,10 +112,10 @@ const VideoGallery: React.FC = () => {
           autoplay={{ delay: 3500, disableOnInteraction: false }}
           className="px-4"
           onSwiper={(swiper) => {
-            playActiveVideo(swiper.activeIndex);
+            playActiveVideo(swiper.activeIndex+1);
           }}
           onSlideChange={(swiper) => {
-            playActiveVideo(swiper.activeIndex);
+            playActiveVideo(swiper.activeIndex+1);
           }}
         >
           {videos.map((item, index) => (
@@ -156,15 +149,15 @@ const VideoGallery: React.FC = () => {
 
                 {/* Title */}
                 <div className="absolute bottom-6 left-6 right-6 text-white group-hover:opacity-0 transition-opacity duration-500">
-                  <h3 className="text-lg font-medium drop-shadow-lg">
+                  <h3 className="font-18 font-medium drop-shadow-lg">
                     {item.title}
                   </h3>
                 </div>
 
                 {/* Optional play icon overlay */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                  <div className="bg-black/50 rounded-full p-4 text-white text-xl">
-                    ▶
+                  <div className="bg-black/50 rounded-full p-3 text-white text-xl">
+                    <FaRegCirclePlay size={32} />
                   </div>
                 </div>
               </div>
@@ -200,13 +193,13 @@ const VideoGallery: React.FC = () => {
           <button
             onClick={() => setZoomIndex(null)}
             aria-label="Close video"
-                      className="
+            className="
               absolute top-6 right-6 z-100
               flex items-center justify-center
               w-12 h-12
               rounded-full
               bg-black/60
-              text-white text-2xl
+              text-white font-24
               hover:bg-black/80
               transition
             "

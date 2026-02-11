@@ -17,7 +17,6 @@ const fadeUp: Variants = {
   }),
 };
 
-
 type Props = {
   title: string;
   desc: string;
@@ -25,12 +24,7 @@ type Props = {
   index: number;
 };
 
-export default function ServiceCard({
-  title,
-  desc,
-  icon: Icon,
-  index,
-}: Props) {
+export default function ServiceCard({ title, desc, icon: Icon, index }: Props) {
   return (
     <motion.div
       variants={fadeUp}
@@ -48,7 +42,7 @@ export default function ServiceCard({
         bg-black/5
         rounded-2xl p-8
         border border-gray-200
-        shadow-sm
+        shadow-sm cursor-pointer
         hover:shadow-[0_20px_50px_rgba(50,77,211,0.15)]
         transition-all
       "
@@ -60,8 +54,8 @@ export default function ServiceCard({
           opacity-0 group-hover:opacity-100
           transition-opacity duration-500
           pointer-events-none
-          bg-gradient-to-br
-          from-[var(--color-primary-light)]/20
+          bg-linear-to-br
+          from-light/20
           via-transparent
           to-transparent
         "
@@ -75,9 +69,9 @@ export default function ServiceCard({
           w-12 h-12 mb-6
           rounded-xl
           flex items-center justify-center
-          bg-[var(--color-primary)]/10
-          text-[var(--color-primary)]
-          text-2xl
+          bg-primary/10
+          text-primary
+          font-24
         "
       >
         <Icon />
@@ -87,8 +81,8 @@ export default function ServiceCard({
       <h3
         className="
           text-xl font-semibold mb-3
-          text-[var(--background)]
-          group-hover:text-[var(--color-primary)]
+          text-background
+          group-hover:text-primary
           transition-colors
         "
       >
@@ -98,7 +92,7 @@ export default function ServiceCard({
       {/* Description */}
       <p
         className="
-          text-[var(--color-gray)]
+          text-gray
           text-lg leading-relaxed
         "
       >
@@ -109,7 +103,7 @@ export default function ServiceCard({
       <div
         className="
           absolute bottom-0 left-0 h-[3px] w-0
-          bg-[var(--color-primary)]
+          bg-primary
           group-hover:w-full
           transition-all duration-500
         "

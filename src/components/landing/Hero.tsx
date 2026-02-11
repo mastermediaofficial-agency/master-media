@@ -40,7 +40,7 @@ export default function Hero() {
       <div className="px-6 max-w-800 text-black">
         <div className="text-center">
           {/* Line 1 */}
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-8 leading-tight">
+          <h1 className="font-72 font-extrabold mb-8 leading-tight">
             <span
               className={`transition-opacity duration-200 ${dim("masters")}`}
             >
@@ -59,7 +59,7 @@ export default function Hero() {
           </h1>
 
           {/* Line 2 */}
-          <p className="text-2xl md:text-4xl mb-4">
+          <p className="font-36 mb-4">
             <span
               className={`transition-opacity duration-200 ${dim("algorithm")}`}
             >
@@ -78,7 +78,7 @@ export default function Hero() {
           </p>
 
           {/* Line 3 */}
-          <p className="text-2xl md:text-4xl mb-10">
+          <p className="font-36 mb-10">
             <span className={`transition-opacity duration-200 ${dim("break")}`}>
               creative enough to{" "}
             </span>
@@ -101,15 +101,15 @@ export default function Hero() {
 
           {/* Buttons */}
           <div
-            className={`flex gap-4 justify-center transition-opacity duration-200 ${
+            className={`flex gap-4 justify-center flex-col sm:flex-row transition-opacity duration-200 ${
               activeWord ? "opacity-0" : "opacity-100"
             }`}
           >
-            <button className="px-10 py-4 bg-yellow-300 border-2 border-black rounded-xl text-[22px] font-bold hover:-translate-y-1 hover:shadow-xl transition-all">
+            <button className="p-2.5 sm:p-4 lg:px-10 lg:py-4 bg-primary-dark shadow-xl shadow-blue-950 text-white rounded-xl font-22 font-bold hover:-translate-y-1 hover:shadow-xl transition-all">
               Get Started
             </button>
 
-            <button className="px-10 py-4 bg-black text-white border-2 border-black rounded-xl text-[22px] font-semibold hover:-translate-y-1 hover:shadow-xl transition-all">
+            <button className="p-2.5 sm:p-4 lg:px-10 lg:py-4 bg-black text-white shadow-xl shadow-gray-950 rounded-xl font-22 font-semibold hover:-translate-y-1 hover:shadow-xl transition-all">
               View Work
             </button>
           </div>

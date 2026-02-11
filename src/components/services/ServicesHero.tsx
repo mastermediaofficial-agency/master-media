@@ -9,15 +9,24 @@ export default function ServicesHero() {
       transition={{ duration: 0.8 }}
       className="max-w-4xl mx-auto text-center mb-20"
     >
-      <h1 className="text-4xl md:text-6xl font-bold mb-6">
-        Our <span className="text-green-400">Services</span>
-      </h1>
+      <motion.h1
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.1 }}
+        className="font-48 font-extrabold mb-6 text-black"
+      >
+        Our{" "}
+        <span className="bg-linear-to-r from-[#324dd3] to-[#566bd6] bg-clip-text text-transparent">
+          Services
+        </span>{" "}
+      </motion.h1>
 
-      <p className="text-gray-400 text-lg">
+      <p className="text-gray-400 font-18">
         We don&apos;t do boring marketing.
         <br />
         We build brands, break patterns, and create growth with a little
-        <span className="text-green-400 font-semibold"> panga </span>
+        <span className="text-blue-400 font-semibold"> panga </span>
       </p>
     </motion.div>
   );

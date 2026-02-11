@@ -23,7 +23,7 @@ const stats: StatItem[] = [
     value: 5000,
     suffix: "+",
     title: "Brands Empowered",
-    desc: "Businesses scaled with strategy & creativity",
+    desc: "Businesses scaled with strategy",
   },
   {
     icon: <FaHeart />,
@@ -50,21 +50,21 @@ const stats: StatItem[] = [
 
 export default function Mastery() {
   return (
-    <section className="relative bg-linear-to-b from-[#28377d] to-[#1f2b63] py-24 px-6 text-white">
-      <div className="mx-auto max-w-6xl text-center">
+    <section className="relative bg-linear-to-b from-[#28377d] to-[#1f2b63] py-10 lg:py-20 text-white">
+      <div className="mx-auto max-w-400 text-center px-4 lg:px-10">
         {/* Heading */}
-        <motion.h2
+        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-3xl md:text-4xl font-bold"
+          className="font-48 font-extrabold"
         >
           Our Journey in Numbers
-        </motion.h2>
+        </motion.h1>
 
         {/* Stats */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12">
           {stats.map((item, i) => (
             <StatCard key={i} {...item} />
           ))}
@@ -114,23 +114,23 @@ function StatCard({
       <div className="absolute inset-0 rounded-xl bg-[#324dd3]/40 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       {/* Card */}
-      <div className="relative rounded-xl border border-white/10 bg-white/5 backdrop-blur-md p-8 shadow-lg transition-all duration-300 group-hover:border-[#566bd6]">
+      <div className="relative rounded-xl border border-white/10 bg-white/5 backdrop-blur-md p-4 lg:p-6 shadow-lg transition-all duration-300 group-hover:border-[#566bd6]">
         {/* Icon */}
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#324dd3] text-white text-xl shadow-md">
           {icon}
         </div>
 
         {/* Number */}
-        <div className="mt-6 text-4xl font-extrabold text-[#566bd6]">
+        <div className="mt-4 lg:mt-6 font-36 font-extrabold text-white/80">
           {count.toLocaleString()}
           {suffix}
         </div>
 
         {/* Title */}
-        <p className="mt-2 font-semibold text-white">{title}</p>
+        <p className="mt-3 font-semibold text-white">{title}</p>
 
         {/* Desc */}
-        <p className="mt-1 text-sm text-[#9f9f9f]">{desc}</p>
+        <p className="mt-2 font-16 text-white/80">{desc}</p>
       </div>
     </motion.div>
   );

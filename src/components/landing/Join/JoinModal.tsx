@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import JoinForm from "./JoinForm";
+import { IoMdClose } from "react-icons/io";
 
 export default function JoinModal({
   open,
@@ -11,14 +12,8 @@ export default function JoinModal({
   open: boolean;
   onClose: () => void;
 }) {
-  // 🔒 Scroll lock
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -28,46 +23,58 @@ export default function JoinModal({
     <AnimatePresence>
       {open && (
         <>
-          {/* 🌫 Blurred Overlay */}
+          {/* 🌫 Soft overlay */}
           <motion.div
-            className="
-              fixed inset-0 z-50
-              bg-black/40 backdrop-blur-md
-            "
+            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
           />
 
-          {/* ✨ Premium Modal */}
+          {/* 🎈 Balloon Modal */}
           <motion.div
             className="
-              fixed left-1/2 top-1/2
-              -translate-x-1/2 -translate-y-1/2
-              w-[92%] sm:w-[800px]
+              fixed z-50 
+              left-1/2 top-1/2
+              -translate-y-1/2
               bg-white/90 backdrop-blur-xl
               rounded-2xl
-              p-8 z-50 shadow-[0_20px_60px_rgba(0,0,0,0.25)]
+              p-6
+              shadow-[0_20px_60px_rgba(0,0,0,0.25)]
+              w-[92%] sm:w-[800px]
             "
-            initial={{ scale: 0.85, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.85, opacity: 0 }}
-            transition={{
-              type: "spring",
-              stiffness: 260,
-              damping: 22,
+            initial={{
+              x: "100vw",      // pushed from right
+              scaleX: 0.7,     // compressed like air pressure
+              opacity: 0,
             }}
+            animate={{
+              x: "-50%",       // settle at center
+              scaleX: [0.7, 1.05, 1], // inflate → relax
+              opacity: 1,
+            }}
+            exit={{
+              x: "100vw",
+              scaleX: 0.8,
+              opacity: 0,
+            }}
+            transition={{
+              duration: 0.8,
+              ease: [0.22, 1, 0.36, 1], // balloon easing (VERY important)
+            }}
+            onClick={(e) => e.stopPropagation()}
           >
+            {/* ❌ Close */}
             <button
               onClick={onClose}
               className="
-                absolute top-4 right-4
+                absolute top-6 right-5
                 text-gray-400 hover:text-black
-                text-lg
+                bg-blue-100 rounded-full shrink-0 p-1
               "
             >
-              ✕
+              <IoMdClose size={24} />
             </button>
 
             <JoinForm />

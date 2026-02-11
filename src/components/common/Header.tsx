@@ -61,7 +61,7 @@ export default function Header() {
           ${scrollDir === "up" ? "mt-4 scale-[1.01]" : "mt-6 scale-100"}`}
         >
           <div
-            className={`flex h-20 items-center justify-between rounded-2xl px-6 backdrop-blur-lg
+            className={`flex h-16 md:h-20 items-center justify-between rounded-2xl px-6 backdrop-blur-lg
             transition-all duration-500 ease-out
             ${
               scrollDir === "up"
@@ -70,7 +70,7 @@ export default function Header() {
             }`}
           >
             {/* LOGO */}
-            <Link href="/" className="relative h-full w-32">
+            <Link href="/" className="relative h-full w-20 md:w-32">
               <Image
                 src="/mm-logo-trans.png"
                 alt="Master Media"
@@ -89,11 +89,11 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`group relative flex items-center gap-2 text-base font-semibold transition
+                    className={`group relative flex items-center gap-2 font-16 font-semibold transition
                     ${active ? "text-black" : "text-gray-600 hover:text-black"}`}
                   >
                     <span
-                      className={`text-lg transition-transform ${
+                      className={`font-18 transition-transform ${
                         active ? "scale-110" : "group-hover:scale-110"
                       }`}
                     >
@@ -115,7 +115,7 @@ export default function Header() {
             <Link
               href="/contact"
               className="hidden lg:inline-flex items-center rounded-xl bg-primary px-5 py-2.5
-              text-lg font-semibold text-white transition hover:bg-primary/90 hover:shadow-lg"
+              font-18 font-semibold text-white transition hover:bg-primary/90 hover:shadow-lg"
             >
               Get In Touch
             </Link>
@@ -123,7 +123,7 @@ export default function Header() {
             {/* MOBILE BUTTON */}
             <button
               onClick={() => setOpen(true)}
-              className="lg:hidden text-2xl"
+              className="lg:hidden font-24 text-black"
             >
               <FaBars />
             </button>
@@ -144,9 +144,9 @@ export default function Header() {
         transition-transform duration-300
         ${open ? "translate-x-0" : "translate-x-full"}`}
       >
-        <div className="flex items-center justify-between">
-          <span className="text-lg font-semibold">Menu</span>
-          <button onClick={() => setOpen(false)} className="text-xl">
+        <div className="flex items-center justify-between border-b border-primary-light/50 pb-4">
+          <span className="font-20 text-black font-semibold">Master Media</span>
+          <button onClick={() => setOpen(false)} className="font-20 text-black">
             <FaTimes />
           </button>
         </div>
@@ -160,23 +160,25 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={`flex items-center gap-3 text-sm font-medium
+                className={`flex items-center gap-3 font-16 font-medium
                 ${active ? "text-black" : "text-gray-600"}`}
               >
-                <span className="text-lg">{item.icon}</span>
+                <span className="font-18">{item.icon}</span>
                 {item.label}
               </Link>
             );
           })}
 
-          <Link
-            href="/contact"
-            onClick={() => setOpen(false)}
-            className="mt-6 inline-flex justify-center rounded-xl bg-blue-600
-            px-4 py-3 text-sm font-semibold text-white"
-          >
-            Get In Touch
-          </Link>
+          <div className="border-t border-primary-light/50 pt-4 flex justify-center w-full">
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className="w-full shadow-blue-500 inline-flex justify-center rounded-xl bg-primary border border-gray-400
+            px-4 py-3 font-16 font-semibold text-white hover:shadow-sm"
+            >
+              Get In Touch
+            </Link>
+          </div>
         </nav>
       </aside>
     </>

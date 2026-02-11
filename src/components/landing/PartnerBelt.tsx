@@ -26,14 +26,14 @@ const PartnerBelt = () => {
   const direction = useScrollDirection();
 
   return (
-    <section className="relative py-20 overflow-hidden bg-white px-4 lg:px-10">
+    <section className="relative py-10 lg:py-20 overflow-hidden bg-white px-4 lg:px-10">
       {/* Heading */}
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center text-3xl md:text-4xl font-semibold text-black"
+        className=" font-48 font-extrabold text-center text-black"
       >
         We{" "}
         <span className="text-[#566bd6]">partner with the best</span>, to do our
@@ -48,7 +48,7 @@ const PartnerBelt = () => {
             ${direction === "left" ? "belt-left" : "belt-left"}
           `}
         >
-          {[...PARTNER_BELT, ...PARTNER_BELT].map((item, i) => (
+          {[...PARTNER_BELT, ...PARTNER_BELT,  ...PARTNER_BELT].map((item, i) => (
             <div
               key={i}
               className="

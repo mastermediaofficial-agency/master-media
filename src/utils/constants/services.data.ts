@@ -32,8 +32,8 @@ export const services = [
     icon: FaPalette,
   },
   {
-    title: "Mobile & Website UI/UX",
-    desc: "Pretty designs that actually work. Shocking, we know.",
+    title: "Website Development",
+    desc: "Pretty websites that actually work. Shocking, we know.",
     icon: FaMobileAlt,
   },
   {
@@ -41,19 +41,19 @@ export const services = [
     desc: "Finding influencers who influence — not just exist.",
     icon: FaUsers,
   },
-  {
-    title: "Video Production",
-    desc: "Stories shot from the right angles, with the right drama.",
-    icon: FaVideo,
-  },
-  {
-    title: "Consulting Services",
-    desc: "Deep research, sharper insights, zero gyaan overload.",
-    icon: FaLightbulb,
-  },
-  {
-    title: "Technology",
-    desc: "Tech so smooth, it feels unreal (but it's very real).",
-    icon: FaCode,
-  },
+  // {
+  //   title: "Video Production",
+  //   desc: "Stories shot from the right angles, with the right drama.",
+  //   icon: FaVideo,
+  // },
+  // {
+  //   title: "Consulting Services",
+  //   desc: "Deep research, sharper insights, zero gyaan overload.",
+  //   icon: FaLightbulb,
+  // },
+  // {
+  //   title: "Technology",
+  //   desc: "Tech so smooth, it feels unreal (but it's very real).",
+  //   icon: FaCode,
+  // },
 ];

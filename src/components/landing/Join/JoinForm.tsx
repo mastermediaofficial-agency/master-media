@@ -28,109 +28,141 @@ export default function JoinForm() {
     resolver: zodResolver(schema),
   });
 
- const onSubmit = async (data: FormData) => {
-  const controller = new AbortController();
+  const onSubmit = async (data: FormData) => {
+    try {
+      await fetch("/api/feedback", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
 
-  try {
-    await fetch("/api/feedback", {
-      method: "POST",
-      body: JSON.stringify(data),
-      signal: controller.signal,
-    });
-
-    setSuccess(true);
-    reset();
-  } catch (err: any) {
-    if (err.name === "AbortError") {
-      console.log("Fetch aborted safely");
-    } else {
+      setSuccess(true);
+      reset();
+    } catch (err) {
       console.error(err);
     }
-  }
-
-  return () => controller.abort();
-};
-
+  };
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-semibold text-primary-dark">
-        Join and become a master!
-      </h2>
+    <div className="space-y-4">
+      {/* 🌊 Header */}
+      <div className="space-y-4">
+        <span className="font-16 font-semibold text-blue-600 uppercase">
+          Join Us
+        </span>
+        <h2 className="font-30 font-bold text-gray-900 leading-tight">
+          Still having second thoughts?{" "}
+        
+          <span className="text-blue-600">
+            Let’s talk.
+          </span>
+        </h2>
+        <p className="text-gray-600 max-w-lg">
+          Share your details and our team will personally reach out to guide you.
+        </p>
+      </div>
 
+      {/* ✅ Success */}
       {success && (
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
+          initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           className="
-            bg-green-50 border border-green-200
-            text-green-700 px-4 py-3 rounded-lg
+            bg-blue-50 border border-blue-200
+            text-blue-700 px-4 py-3 rounded-xl
           "
         >
-          Thanks for joining! We’ll get back to you soon.
+          🎉 Thanks! Our team will contact you shortly.
         </motion.div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {[
-          ["name", "Name"],
-          ["email", "Email"],
-          ["phone", "Phone number"],
-          ["position", "Position"],
-          ["resume", "Resume / Portfolio link"],
-        ].map(([key, label]) => (
-          <div key={key}>
-            <input
-              {...register(key as keyof FormData)}
-              placeholder={label}
+      {/* 🧾 Form Card */}
+      <div className="bg-blue-50/60 rounded-3xl lg:p-4 sm:p-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {[
+            ["name", "Full name", "Tell us what to call you"],
+            ["email", "Email address", "We’ll never spam you"],
+            ["phone", "Phone number", "For quick coordination"],
+            ["position", "Position / Role", "What are you applying for?"],
+            ["resume", "Resume / Portfolio link", "Google Drive / GitHub / Website"],
+          ].map(([key, label, hint]) => (
+            <div key={key} className="space-y-1">
+              {/* <label className="font-16 font-medium text-gray-700">
+                {label}
+              </label> */}
+
+              <input
+                {...register(key as keyof FormData)}
+                disabled={isSubmitting}
+                placeholder={label}
+                className="
+                  w-full rounded-xl px-4 py-3
+                  bg-white
+                  border border-transparent
+                  shadow-sm
+                  text-black
+
+                  focus:outline-none
+                  focus:border-blue-600
+                  focus:ring-2 focus:ring-blue-200
+                  transition
+                "
+              />
+
+              <div className="flex justify-between">
+                <p className="font-14 text-gray-500">{hint}</p>
+                {errors[key as keyof FormData] && (
+                  <p className="font-14 text-red-500">
+                    {errors[key as keyof FormData]?.message}
+                  </p>
+                )}
+              </div>
+            </div>
+          ))}
+
+          {/* 🎯 Actions */}
+          <div className="flex gap-3 pt-2">
+            <button
+              type="submit"
               disabled={isSubmitting}
               className="
-                w-full rounded-xl px-4 py-3 text-black
-                border border-gray-300
-                focus:outline-none focus:border-primary
+                flex-1
+                bg-blue-600 hover:bg-blue-700
+                text-white py-3 rounded-xl
+                font-semibold
+                shadow-lg shadow-blue-600/30
                 transition
               "
-            />
-            {errors[key as keyof FormData] && (
-              <p className="text-sm text-red-500 mt-1">
-                {errors[key as keyof FormData]?.message}
-              </p>
-            )}
+            >
+              {isSubmitting ? "Submitting…" : "Request a call"}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                reset();
+                setSuccess(false);
+              }}
+              className="
+                flex-1
+                bg-white
+                border border-gray-300
+                py-3 rounded-xl
+                font-semibold text-gray-700
+                hover:bg-gray-100 transition
+              "
+            >
+              Reset
+            </button>
           </div>
-        ))}
 
-        <div className="flex gap-3 pt-2">
-          {/* Submit */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="
-              flex-1 bg-primary hover:bg-primary-dark)
-              text-white py-3 rounded-xl
-              font-semibold transition
-            "
-          >
-            {isSubmitting ? "Submitting..." : "Submit"}
-          </button>
-
-          {/* Reset */}
-          <button
-            type="button"
-            onClick={() => {
-              reset();
-              setSuccess(false);
-            }}
-            className="
-              flex-1 border border-gray-300
-              py-3 rounded-xl
-              font-semibold text-gray-700
-              hover:bg-gray-200 transition
-            "
-          >
-            Reset
-          </button>
-        </div>
-      </form>
+          <p className="font-14 text-gray-500 pt-2">
+            By submitting, you agree to our{" "}
+            <span className="text-blue-600 cursor-pointer">
+              Terms & Privacy Policy
+            </span>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

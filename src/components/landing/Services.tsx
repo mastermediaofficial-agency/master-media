@@ -148,7 +148,7 @@ const ServiceCard3D = ({
         transformStyle: "preserve-3d",
         perspective: 1000,
       }}
-      className="relative cursor-pointer rounded-3xl border-2 border-gray-600/10"
+      className="relative cursor-pointer rounded-3xl border-2 border-gray-600/30"
     >
       <motion.div
         className="absolute inset-0 rounded-3xl blur-xl opacity-0"
@@ -212,14 +212,14 @@ const ServiceCard3D = ({
                 ease: "easeInOut",
               }}
             >
-              <Icon className="text-white text-3xl" />
+              <Icon className="text-white font-30" />
             </motion.div>
           </motion.div>
 
           {/* Title */}
           <div style={{ transform: "translateZ(30px)" }}>
             <h3
-              className="text-2xl font-bold mb-3"
+              className="font-24 font-bold mb-3"
               style={{ color: "#171717" }}
             >
               {title}
@@ -227,9 +227,8 @@ const ServiceCard3D = ({
 
             {/* Tagline */}
             <motion.p
-              className="text-base"
+              className="font-16 text-gray-500"
               style={{
-                color: "#9f9f9f",
                 transform: "translateZ(20px)",
               }}
               animate={{
@@ -242,9 +241,9 @@ const ServiceCard3D = ({
 
             {/* Hover text */}
             <motion.p
-              className="text-base font-medium"
+              className="font-16 font-medium text-gray-500"
               style={{
-                color: color,
+              
                 transform: "translateZ(25px)",
               }}
               initial={{ opacity: 0, y: 10 }}
@@ -302,7 +301,7 @@ const Services = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen py-20 px-4 sm:px-8 relative overflow-hidden"
+      className="min-h-screen py-10 lg:py-20 px-4 sm:px-8 relative overflow-hidden"
       style={{ backgroundColor: "#ffffff" }}
     >
       {/* Animated background elements */}
@@ -357,7 +356,7 @@ const Services = () => {
             SERVICES
           </motion.div>
           <h2
-            className="text-5xl sm:text-6xl lg:text-7xl font-black mb-4"
+            className="font-72 font-black mb-4"
             style={{
               color: "#171717",
               fontFamily: "'Helvetica Neue', sans-serif",
@@ -367,12 +366,12 @@ const Services = () => {
             What We Do <span style={{ color: "#324dd3" }}>Best</span>
           </h2>
           <p
-            className="text-lg sm:text-xl max-w-2xl mx-auto"
+            className="font-20 max-w-2xl mx-auto"
             style={{ color: "#9f9f9f" }}
           >
             High-impact solutions for modern brands. No fluff, just results.
             <br />
-            <span className="text-sm">(And maybe a little bit of humor)</span>
+            <span className="font-14">(And maybe a little bit of humor)</span>
           </p>
         </motion.div>
 
@@ -399,7 +398,7 @@ const Services = () => {
               </div>
             ))}
           </motion.div>
-          <p className="text-center text-sm mt-4" style={{ color: "#9f9f9f" }}>
+          <p className="text-center font-14 mt-4" style={{ color: "#9f9f9f" }}>
             ← Swipe to explore →
           </p>
         </div>
@@ -433,7 +432,7 @@ const Services = () => {
           transition={{ delay: 0.8 }}
           className="text-center mt-16"
         >
-          <p className="text-sm" style={{ color: "#9f9f9f" }}>
+          <p className="font-18" style={{ color: "#9f9f9f" }}>
             Need something custom? Were flexible like yoga instructors.{" "}
             <motion.span
               whileHover={{ scale: 1.1, color: "#324dd3" }}
