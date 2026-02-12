@@ -11,12 +11,12 @@ type CareerPayload = {
 
 export async function POST(req: Request) {
   const scriptUrl =
-    "https://script.google.com/macros/s/AKfycbzWZkvQyu6rFgci08SafKXXtQSWq8mMT9Um6Gxz5eDX17ILb56bCyBl8ZS-4Xz7auxM8w/exec";
+    "https://script.google.com/macros/s/AKfycbymVVzZJ6uUOOyM8rKLKnMXlpUHKDKq47_to7cZmeWI5f60EDu_nKprGsXEY82wFtWm/exec";
 
   if (!scriptUrl) {
     return NextResponse.json(
       { error: "Missing career script URL." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -25,7 +25,10 @@ export async function POST(req: Request) {
   try {
     payload = await req.json();
   } catch {
-    return NextResponse.json({ error: "Invalid JSON payload." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Invalid JSON payload." },
+      { status: 400 },
+    );
   }
 
   if (
@@ -37,7 +40,7 @@ export async function POST(req: Request) {
   ) {
     return NextResponse.json(
       { error: "Missing required fields." },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -52,7 +55,7 @@ export async function POST(req: Request) {
     if (!upstream.ok) {
       return NextResponse.json(
         { error: "Google Script returned an error." },
-        { status: 502 }
+        { status: 502 },
       );
     }
 
@@ -61,7 +64,7 @@ export async function POST(req: Request) {
     console.error("Career script request failed:", error);
     return NextResponse.json(
       { error: "Failed to connect to Google Script." },
-      { status: 502 }
+      { status: 502 },
     );
   }
 }

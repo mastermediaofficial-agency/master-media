@@ -8,11 +8,12 @@ type ContactPayload = {
 };
 
 export async function POST(req: Request) {
-  const scriptUrl ='https://script.google.com/macros/s/AKfycbxIwOLa_3Kz6tV72npdHC2dYBBdMEg7MJeZLpgyFg13vmR7KPgF5nTDfdAaeoE9gQ77Iw/exec'
+  const scriptUrl =
+    "https://script.google.com/macros/s/AKfycbyNBiW36P_CQsRwpSGl5iz9cy4XwjSCJxeib-ieY3eUReI7fpoGy-OvslHlnJVZOkst8g/exec";
   if (!scriptUrl) {
     return NextResponse.json(
       { error: "Missing GOOGLE_SCRIPT_WEB_APP_URL environment variable." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -21,11 +22,17 @@ export async function POST(req: Request) {
   try {
     payload = await req.json();
   } catch {
-    return NextResponse.json({ error: "Invalid JSON payload." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Invalid JSON payload." },
+      { status: 400 },
+    );
   }
 
   if (!payload.name || !payload.email || !payload.phone || !payload.message) {
-    return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Missing required fields." },
+      { status: 400 },
+    );
   }
 
   try {
@@ -39,7 +46,7 @@ export async function POST(req: Request) {
     if (!upstream.ok) {
       return NextResponse.json(
         { error: "Google Script returned an error." },
-        { status: 502 }
+        { status: 502 },
       );
     }
 
@@ -48,7 +55,7 @@ export async function POST(req: Request) {
     console.error("Google Script request failed:", error);
     return NextResponse.json(
       { error: "Failed to connect to Google Script." },
-      { status: 502 }
+      { status: 502 },
     );
   }
 }
