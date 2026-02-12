@@ -38,11 +38,11 @@ export default function JoinModal({
               fixed z-50 
               left-1/2 top-1/2
               -translate-y-1/2
-              bg-white/90 backdrop-blur-xl
+              bg-white backdrop-blur-xl
               rounded-2xl
               p-6
               shadow-[0_20px_60px_rgba(0,0,0,0.25)]
-              w-[92%] sm:w-[800px]
+              w-[300px] sm:w-[500px] lg:w-[800px]
             "
             initial={{
               x: "100vw",      // pushed from right

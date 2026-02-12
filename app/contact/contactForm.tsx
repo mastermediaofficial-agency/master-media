@@ -1,24 +1,59 @@
 "use client";
 
-import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 
 const schema = z.object({
-  name: z.string().min(2, "Name required"),
-  email: z.string().email("Invalid email"),
-  phone: z.string().min(10, "Invalid phone"),
-  position: z.string().min(2, "Position required"),
-  resume: z.string().url("Valid URL required"),
+  name: z
+    .string()
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name is too long")
+    .regex(/^[a-zA-Z\s]+$/, "Name can only contain letters"),
+
+  email: z.string().email("Enter a valid email address").max(100),
+
+  phone: z
+    .string()
+    .regex(/^[6-9]\d{9}$/, "Enter a valid 10-digit Indian phone number"),
+
+  message: z.string().max(500, "Message too long").optional().or(z.literal("")), // allows empty string
 });
 
 type FormData = z.infer<typeof schema>;
 
-export default function JoinForm() {
-  const [success, setSuccess] = useState(false);
+const fields: Array<{
+  key: Exclude<keyof FormData, "message">;
+  label: string;
+  placeholder: string;
+  type: string;
+  autoComplete: string;
+}> = [
+  {
+    key: "name",
+    label: "Full Name",
+    placeholder: "Enter your full name",
+    type: "text",
+    autoComplete: "name",
+  },
+  {
+    key: "email",
+    label: "Email Address",
+    placeholder: "you@company.com",
+    type: "email",
+    autoComplete: "email",
+  },
+  {
+    key: "phone",
+    label: "Phone Number",
+    placeholder: "+91 9988776655",
+    type: "tel",
+    autoComplete: "tel",
+  },
+];
 
+export default function ContactForm() {
   const {
     register,
     handleSubmit,
@@ -29,17 +64,35 @@ export default function JoinForm() {
   });
 
   const onSubmit = async (data: FormData) => {
+    const toastId = toast.loading("Submitting your message...");
+
     try {
-      await fetch("/api/feedback", {
-        method: "POST",
+      const payload = {
+        ...data,
+        message: data.message?.trim() ? data.message : "-",
+      };
+
+      const response = await fetch("/api/contact", {
+        method: "POST",  
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
 
-      setSuccess(true);
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
+      }
+
+      toast.success("Thanks! We’ll contact you soon.", {
+        id: toastId,
+      });
+
       reset();
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
+
+      toast.error("Something went wrong. Please try again.", {
+        id: toastId,
+      });
     }
   };
 
@@ -49,57 +102,63 @@ export default function JoinForm() {
         Join and become a master 🚀
       </h2>
 
-      {success && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="
-            bg-green-50 border border-green-200
-            text-green-700 px-4 py-3 rounded-xl
-          "
-        >
-          Thanks for joining! We’ll get back to you soon.
-        </motion.div>
-      )}
-
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {[
-          ["name", "Full name"],
-          ["email", "Email address"],
-          ["phone", "Phone number"],
-          ["position", "Message area"],
-          ["resume", "Resume / Portfolio link"],
-        ].map(([key, label]) => (
-          <div key={key}>
+        {fields.map((field) => (
+          <div key={field.key} className="space-y-1.5">
+            <label
+              htmlFor={field.key}
+              className="block text-sm font-medium text-slate-700"
+            >
+              {field.label}
+              <span className="text-red-500">*</span>
+            </label>
+
             <input
-              {...register(key as keyof FormData)}
-              placeholder={label}
+              id={field.key}
+              type={field.type}
+              autoComplete={field.autoComplete}
+              {...register(field.key)}
+              placeholder={field.placeholder}
               disabled={isSubmitting}
-              className="
-                w-full rounded-xl px-4 py-3
-                border border-black/30 text-black
-                focus:outline-none focus:ring-2 focus:ring-blue-500
-                transition
-              "
+              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100"
             />
-            {errors[key as keyof FormData] && (
-              <p className="text-sm text-red-500 mt-1">
-                {errors[key as keyof FormData]?.message}
+
+            {errors[field.key] && (
+              <p className="text-xs text-red-600">
+                {errors[field.key]?.message}
               </p>
             )}
           </div>
         ))}
 
+        <div className="space-y-1.5">
+          <label
+            htmlFor="message"
+            className="block text-sm font-medium text-slate-700"
+          >
+            Message
+          </label>
+
+          <textarea
+            id="message"
+            rows={3}
+            {...register("message")}
+            placeholder="Tell us about your requirement..."
+            disabled={isSubmitting}
+            className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100"
+          />
+
+          {errors.message && (
+            <p className="text-xs text-red-600">{errors.message.message}</p>
+          )}
+        </div>
+
         <button
           type="submit"
           disabled={isSubmitting}
-          className="
-            w-full bg-blue-600 hover:bg-blue-700
-            text-white py-3 rounded-xl
-            font-semibold transition
-          "
+          className="inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {isSubmitting ? "Submitting..." : "Submit"}
+          {isSubmitting ? "Submitting..." : "Send Message"}
         </button>
       </form>
     </div>

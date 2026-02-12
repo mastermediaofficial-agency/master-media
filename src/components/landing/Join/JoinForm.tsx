@@ -1,23 +1,43 @@
 "use client";
 
-import { motion } from "framer-motion";
+import toast from "react-hot-toast";
+import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const schema = z.object({
-  name: z.string().min(2, "Name required"),
-  email: z.string().email("Invalid email"),
-  phone: z.string().min(10, "Invalid phone"),
-  position: z.string().min(2, "Position required"),
-  resume: z.string().url("Valid URL required"),
+  name: z
+    .string()
+    .trim()
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name is too long")
+    .regex(/^[a-zA-Z\s]+$/, "Name can only contain letters"),
+
+  email: z
+    .string()
+    .trim()
+    .email("Enter a valid email address")
+    .max(100),
+
+  phone: z
+    .string()
+    .trim()
+    .regex(/^[6-9]\d{9}$/, "Enter a valid 10-digit Indian phone number"),
+
+  message: z
+    .string()
+    .trim()
+    .max(500, "Message too long")
+    .optional()
+    .or(z.literal("")),
 });
+
 
 type FormData = z.infer<typeof schema>;
 
 export default function JoinForm() {
-  const [success, setSuccess] = useState(false);
 
   const {
     register,
@@ -28,141 +48,141 @@ export default function JoinForm() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async (data: FormData) => {
-    try {
-      await fetch("/api/feedback", {
-        method: "POST",
-        body: JSON.stringify(data),
-      });
+const onSubmit = async (data: FormData) => {
+  const toastId = toast.loading("Submitting your request...");
 
-      setSuccess(true);
-      reset();
-    } catch (err) {
-      console.error(err);
+  try {
+    const payload = {
+      ...data,
+      message: data.message?.trim() ? data.message : "-",
+    };
+
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed");
     }
-  };
+
+    toast.success("🎉 Thanks! Our team will contact you shortly.", {
+      id: toastId,
+    });
+
+    reset();
+  } catch (err) {
+    console.error(err);
+
+    toast.error("Something went wrong. Please try again.", {
+      id: toastId,
+    });
+  }
+};
+
+
 
   return (
-    <div className="space-y-4">
-      {/* 🌊 Header */}
-      <div className="space-y-4">
-        <span className="font-16 font-semibold text-blue-600 uppercase">
+    <div className="w-full  space-y-4">
+      {/* Header */}
+      <div className="space-y-2 text-center">
+        <span className="text-xs font-semibold tracking-wider text-blue-600 uppercase">
           Join Us
         </span>
-        <h2 className="font-30 font-bold text-gray-900 leading-tight">
-          Still having second thoughts?{" "}
-        
-          <span className="text-blue-600">
-            Let’s talk.
-          </span>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+          Let’s talk.
         </h2>
-        <p className="text-gray-600 max-w-lg">
-          Share your details and our team will personally reach out to guide you.
+        <p className="text-sm text-gray-600">
+          Share your details and we’ll personally reach out.
         </p>
       </div>
 
-      {/* ✅ Success */}
-      {success && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="
-            bg-blue-50 border border-blue-200
-            text-blue-700 px-4 py-3 rounded-xl
-          "
-        >
-          🎉 Thanks! Our team will contact you shortly.
-        </motion.div>
-      )}
+  
 
-      {/* 🧾 Form Card */}
-      <div className="bg-blue-50/60 rounded-3xl lg:p-4 sm:p-5">
+      {/* Form */}
+      <motion.div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {[
-            ["name", "Full name", "Tell us what to call you"],
-            ["email", "Email address", "We’ll never spam you"],
-            ["phone", "Phone number", "For quick coordination"],
-            ["position", "Position / Role", "What are you applying for?"],
-            ["resume", "Resume / Portfolio link", "Google Drive / GitHub / Website"],
-          ].map(([key, label, hint]) => (
-            <div key={key} className="space-y-1">
-              {/* <label className="font-16 font-medium text-gray-700">
-                {label}
-              </label> */}
+  ["name", "Full Name"],
+  ["email", "Email Address"],
+  ["phone", "Phone Number"],
+  ["message", "Write a message"],
+].map(([key, label], index) => (
+  <motion.div
+    key={key}
+    initial={{ opacity: 0, y: 15 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: index * 0.1 }}
+    className="space-y-1"
+  >
 
               <input
                 {...register(key as keyof FormData)}
                 disabled={isSubmitting}
                 placeholder={label}
                 className="
-                  w-full rounded-xl px-4 py-3
-                  bg-white
-                  border border-transparent
-                  shadow-sm
-                  text-black
-
+                  w-full rounded-xl px-4 py-3 border border-gray-200
+                  text-sm text-black
                   focus:outline-none
-                  focus:border-blue-600
-                  focus:ring-2 focus:ring-blue-200
+                  focus:ring-2 focus:ring-blue-500
+                  focus:border-blue-500
                   transition
                 "
               />
 
-              <div className="flex justify-between">
-                <p className="font-14 text-gray-500">{hint}</p>
-                {errors[key as keyof FormData] && (
-                  <p className="font-14 text-red-500">
-                    {errors[key as keyof FormData]?.message}
-                  </p>
-                )}
-              </div>
-            </div>
+              {errors[key as keyof FormData] && (
+                <p className="text-xs text-red-500">
+                  {errors[key as keyof FormData]?.message}
+                </p>
+              )}
+            </motion.div>
           ))}
 
-          {/* 🎯 Actions */}
-          <div className="flex gap-3 pt-2">
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 pt-2">
             <button
               type="submit"
               disabled={isSubmitting}
               className="
-                flex-1
+                w-full
                 bg-blue-600 hover:bg-blue-700
                 text-white py-3 rounded-xl
-                font-semibold
-                shadow-lg shadow-blue-600/30
+                text-sm font-semibold
                 transition
               "
             >
-              {isSubmitting ? "Submitting…" : "Request a call"}
+              {isSubmitting ? "Submitting…" : "Request a Call"}
             </button>
 
-            <button
+            {/* <button
               type="button"
               onClick={() => {
                 reset();
                 setSuccess(false);
               }}
               className="
-                flex-1
-                bg-white
+                w-full
                 border border-gray-300
+                text-gray-700
                 py-3 rounded-xl
-                font-semibold text-gray-700
-                hover:bg-gray-100 transition
+                text-sm font-semibold
+                hover:bg-gray-100
+                transition
               "
             >
               Reset
-            </button>
+            </button> */}
           </div>
 
-          <p className="font-14 text-gray-500 pt-2">
+          <p className="text-xs text-gray-500 text-center pt-2">
             By submitting, you agree to our{" "}
             <span className="text-blue-600 cursor-pointer">
               Terms & Privacy Policy
             </span>
           </p>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 }

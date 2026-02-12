@@ -1,0 +1,54 @@
+import { NextResponse } from "next/server";
+
+type ContactPayload = {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
+export async function POST(req: Request) {
+  const scriptUrl ='https://script.google.com/macros/s/AKfycbxIwOLa_3Kz6tV72npdHC2dYBBdMEg7MJeZLpgyFg13vmR7KPgF5nTDfdAaeoE9gQ77Iw/exec'
+  if (!scriptUrl) {
+    return NextResponse.json(
+      { error: "Missing GOOGLE_SCRIPT_WEB_APP_URL environment variable." },
+      { status: 500 }
+    );
+  }
+
+  let payload: ContactPayload;
+
+  try {
+    payload = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON payload." }, { status: 400 });
+  }
+
+  if (!payload.name || !payload.email || !payload.phone || !payload.message) {
+    return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
+  }
+
+  try {
+    const upstream = await fetch(scriptUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      cache: "no-store",
+    });
+
+    if (!upstream.ok) {
+      return NextResponse.json(
+        { error: "Google Script returned an error." },
+        { status: 502 }
+      );
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("Google Script request failed:", error);
+    return NextResponse.json(
+      { error: "Failed to connect to Google Script." },
+      { status: 502 }
+    );
+  }
+}

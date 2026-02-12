@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import ClientSuccessSection from "@/src/components/about/CustomerDelightSection";
 import ImageBelt from "@/src/components/about/ImageBelt";
 import { motion } from "framer-motion";
@@ -29,8 +30,8 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white text-[#171717]">
       {/* HERO SECTION */}
-      <section className="relative bg-primary text-white py-24 px-6 overflow-hidden">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative bg-primary text-white px-4 lg:px-10 pt-25 md:pt-30 pb-15 overflow-hidden">
+        <div className="max-w-6xl mx-auto pb-20">
           <h2 className="text-5xl font-bold mb-6">About Master Media</h2>
 
           <p className="text-lg max-w-3xl leading-relaxed">
@@ -148,12 +149,16 @@ export default function AboutPage() {
         </motion.p>
 
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          className="mt-8 px-8 py-3 bg-white text-primary font-semibold rounded-lg shadow-lg"
-        >
-          Let’s Talk 🚀
-        </motion.button>
+  whileHover={{ scale: 1.1 }}
+  whileTap={{ scale: 0.95 }}
+  onClick={() => {
+    toast.success("🚀 Great! Let’s build something amazing together.");
+  }}
+  className="mt-8 px-8 py-3 bg-white text-primary font-semibold rounded-lg shadow-lg"
+>
+  Let’s Talk 🚀
+</motion.button>
+
       </section>
     </div>
   );

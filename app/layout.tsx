@@ -1,7 +1,8 @@
-import Header from "@/src/components/common/Header";
+import Providers from "@/src/components/providers/Providers";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat, Poppins } from "next/font/google";
+import Header from "@/src/components/common/Header";
 import Footer from "@/src/components/common/Footer";
 
 const montserrat = Montserrat({
@@ -54,6 +55,7 @@ export default function RootLayout({
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <Providers />
       </body>
     </html>
   );

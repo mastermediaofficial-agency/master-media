@@ -2,7 +2,7 @@ import JoinForm from "./contactForm";
 
 export default function contact() {
   return (
-    <section className="min-h-screen bg-[#d7e2f7] flex items-center justify-center px-4 lg:px-10 py-16">
+    <section className="min-h-screen bg-[#d7e2f7] flex items-center justify-center px-4 lg:px-10 pt-25 md:pt-30 pb-15">
       <div
         className="
           max-w-400 w-full
@@ -22,12 +22,22 @@ export default function contact() {
           <div className="space-y-4 pt-4">
             <div>
               <p className="font-semibold text-gray-900">Customer Support</p>
-              <p className="text-gray-600 text-sm">support@yourdomain.com</p>
+              <a
+                href="mailto:mastermediamain@gmail.com"
+                className="text-gray-600 text-sm hover:text-primary transition"
+              >
+                mastermediamain@gmail.com
+              </a>
             </div>
 
             <div>
               <p className="font-semibold text-gray-900">Careers</p>
-              <p className="text-gray-600 text-sm">careers@yourdomain.com</p>
+              <a
+                href="mailto:mastermediamain@gmail.com"
+                className="text-gray-600 text-sm hover:text-primary transition"
+              >
+                mastermediamain@gmail.com
+              </a>
             </div>
           </div>
         </div>

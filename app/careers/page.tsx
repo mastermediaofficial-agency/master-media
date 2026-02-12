@@ -1,5 +1,6 @@
 "use client";
 
+import CareerForm from "@/src/components/career/CareerForm";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -47,7 +48,7 @@ export default function Career() {
   return (
     <main className="overflow-hidden">
       {/* ---------------- HERO ---------------- */}
-      <section className="relative bg-[#E3C20B] text-black px-6 py-24">
+      <section className="relative bg-[#E3C20B] text-black px-4 lg:px-10 pt-25 md:pt-30px-6 py-24 pb-15">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           {/* Left text */}
           <motion.div
@@ -151,6 +152,8 @@ export default function Career() {
           </div>
         </div>
       </section>
+
+      <CareerForm/>
 
       {/* ---------------- FOOT NOTE ---------------- */}
       <section className="bg-black text-black py-20 text-center">
