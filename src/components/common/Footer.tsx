@@ -131,11 +131,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* BOTTOM BAR */}
+        {/* BOTTOM BAR 🇮🇳 • */}
         <div className="mt-8 flex flex-col gap-5 border-t border-white/15 pt-4 text-center sm:flex-row sm:items-center sm:justify-between">
           <span className="flex flex-wrap items-center justify-center gap-1 text-white/60 text-sm md:text-base leading-normal tracking-normal whitespace-nowrap">
             <AiOutlineCopyright />
-            <span>{new Date().getFullYear()} Master Media, 🇮🇳 All right reserved.</span>
+            <span>{new Date().getFullYear()} Master Media, All right reserved.</span>
             <span className="flex items-center gap-1 italic">
               "Built with
               <GiCoffeeCup className="text-amber-400 animate-pulse text-lg" />&

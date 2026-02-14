@@ -27,16 +27,16 @@ export default function MasterMediaGrowth() {
 
           <Link
             href={"/contact"}
-            className="inline-flex items-center justify-center rounded-lg bg-[#324dd3] px-6 py-3 text-white font-medium transition-all duration-300 hover:bg-[#28377d] hover:shadow-lg hover:shadow-[#324dd3]/30 cursor-pointer"
+            className="inline-flex items-center justify-center rounded-lg bg-[#324dd3] px-10 py-3 text-white font-medium transition-all duration-300 hover:bg-[#28377d] hover:shadow-lg hover:shadow-[#324dd3]/30 cursor-pointer"
           >
             Work With Us
           </Link>
         </div>
-
-        <div className="relative flex lg:justify-end justify-center">
+        <div className="relative flex lg:justify-end justify-center select-none ">
           <motion.img
             src="/layers/phone-1.png"
             alt="mobile"
+            draggable={false}
             initial={{ opacity: 0, scale: 0.9, y: -60 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             whileHover={{
@@ -49,12 +49,13 @@ export default function MasterMediaGrowth() {
               duration: 0.9,
               ease: "easeOut",
             }}
-            className="w-[140px] md:w-[220px] rounded-2xl shadow-2xl rotate-[-4deg] pb-10 cursor-pointer will-change-transform"
+            className="w-[140px] md:w-[220px] rounded-2xl shadow-2xl rotate-[-4deg] pb-10 select-none will-change-transform"
           />
 
           <motion.img
             src="/layers/phone-1.png"
             alt="mobile"
+            draggable={false}
             initial={{ opacity: 0, scale: 0.9, y: 60 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             whileHover={{
@@ -68,7 +69,7 @@ export default function MasterMediaGrowth() {
               ease: "easeOut",
               delay: 0.15,
             }}
-            className="w-[140px] md:w-[220px] rounded-2xl shadow-2xl rotate-[6deg] pt-10 cursor-pointer will-change-transform"
+            className="w-[140px] md:w-[220px] rounded-2xl shadow-2xl rotate-6 pt-10 select-none will-change-transform"
           />
         </div>
       </div>

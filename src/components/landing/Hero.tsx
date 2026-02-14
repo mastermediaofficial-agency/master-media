@@ -40,9 +40,9 @@ export default function Hero() {
         Your browser does not support the video tag.
       </video>
       <div className="absolute inset-0 -z-10  bg-white/50" />
-      <div className="px-6 max-w-800 text-black">
+
+      <div className="relative px-6 max-w-800 text-black">
         <div className="text-center">
-          {/* Line 1 */}
           <p className="font-72  mb-8 leading-tight">
             <span
               className={`transition-opacity duration-200 ${dim("masters")}`}
@@ -61,8 +61,7 @@ export default function Hero() {
             </span>
           </p>
 
-          {/* Line 2 */}
-          <p className="font-38 font-semibold mb-4">
+          <p className="font-38 mb-4">
             <span
               className={`transition-opacity duration-200 ${dim("algorithm")}`}
             >
@@ -81,7 +80,7 @@ export default function Hero() {
           </p>
 
           {/* Line 3 */}
-          <p className="font-38 font-semibold 36 mb-10">
+          <p className="font-38 mb-10">
             <span className={`transition-opacity duration-200 ${dim("break")}`}>
               creative enough to{" "}
             </span>

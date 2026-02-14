@@ -73,7 +73,7 @@ export default function ContactForm() {
       };
 
       const response = await fetch("/api/contact", {
-        method: "POST",  
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
@@ -98,8 +98,8 @@ export default function ContactForm() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-semibold text-gray-900">
-        Join and become a master.
+      <h2 className="text-2xl font-semibold text-[#213d77]">
+        Contact Master Media
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -120,7 +120,7 @@ export default function ContactForm() {
               {...register(field.key)}
               placeholder={field.placeholder}
               disabled={isSubmitting}
-              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100"
+              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm transition focus:border-[#324dd3] focus:outline-none focus:ring-4 focus:ring-[#324dd3]/20"
             />
 
             {errors[field.key] && (
@@ -145,7 +145,7 @@ export default function ContactForm() {
             {...register("message")}
             placeholder="Tell us about your requirement..."
             disabled={isSubmitting}
-            className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm transition focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-100"
+            className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm transition focus:border-[#324dd3] focus:outline-none focus:ring-4 focus:ring-[#324dd3]/20"
           />
 
           {errors.message && (
@@ -156,7 +156,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
+          className="inline-flex w-full items-center justify-center rounded-xl bg-[#324dd3] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#28377d] disabled:cursor-not-allowed disabled:opacity-70 shadow-md hover:shadow-lg"
         >
           {isSubmitting ? "Submitting..." : "Send Message"}
         </button>

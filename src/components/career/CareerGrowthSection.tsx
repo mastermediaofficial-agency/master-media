@@ -24,7 +24,7 @@ const benefits = [
 
 export default function CareerGrowthSection() {
   return (
-    <section className="w-full bg-primary-light text-white py-20 px-6 md:px-16">
+    <section className="w-full bg-primary-light text-white py-15 px-4 md:px-10">
       <div className="max-w-7xl mx-auto">
 
         {/* Heading */}
@@ -66,7 +66,7 @@ export default function CareerGrowthSection() {
           </motion.div>
 
           {/* Right Cards */}
-          <div className="grid sm:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-2 gap-4 lg:gap-8">
 
             {benefits.map((item, index) => (
               <motion.div

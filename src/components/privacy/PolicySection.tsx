@@ -14,7 +14,10 @@ export default function PolicySection({
   return (
     <motion.div
       variants={fadeUp}
-      className="relative group p-4 lg:p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-[#324dd3] transition-all duration-500"
+      whileInView={{ scale: 1, opacity: 1 }}
+initial={{ scale: 0.95, opacity: 0.8 }}
+      className="relative group p-4 lg:p-6 rounded-2xl border border-white/10 bg-primary-light/50 backdrop-blur-md hover:border-[#324dd3] transition-all duration-500 overflow-hidden
+"
     >
       <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-[#324dd3]/0 via-[#324dd3]/10 to-[#324dd3]/0 opacity-0 group-hover:opacity-100 transition duration-700" />
 

@@ -82,17 +82,16 @@ export default function CareerForm() {
   };
 
   return (
-    <div className="w-full bg-white py-10">
+    <div className="w-full bg-white px-4 py-10">
       <div className="max-w-3xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-10">
           <h2 className="font-38 font-bold text-primary">Join Master Media.</h2>
           <p className="font-20 text-gray-600 mt-3">
-            Apply now and become part of a fast-growing digital team with passion.
+            Apply now and become part of a fast-growing digital team with
+            passion.
           </p>
         </div>
 
-        {/* Form Card */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,7 +99,6 @@ export default function CareerForm() {
           className="bg-white shadow-xl rounded-2xl p-5 border border-gray-100"
         >
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-            {/* Input Fields */}
             {[
               ["name", "Full Name*"],
               ["email", "Email Address*"],
@@ -137,8 +135,6 @@ export default function CareerForm() {
                 )}
               </motion.div>
             ))}
-
-            {/* Message (Optional) */}
             <div className="space-y-1">
               <textarea
                 rows={3}
@@ -161,7 +157,6 @@ export default function CareerForm() {
               )}
             </div>
 
-            {/* Submit Button */}
             <motion.button
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.97 }}

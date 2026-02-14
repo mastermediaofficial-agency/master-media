@@ -33,7 +33,7 @@ const sections = [
       <ul className="space-y-2 lg:space-y-3 list-disc pl-6">
         <li>Name, email address, phone number</li>
         <li>Company and billing details</li>
-        <li>IP address and browser information</li>
+        {/* <li>IP address and browser information</li> */}
         <li>Analytics and interaction data</li>
       </ul>
     ),
@@ -111,7 +111,7 @@ export default function Privacy() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen bg-gray-800 px-4 lg:px-10 pt-32 pb-24">
+    <section className="relative w-full min-h-screen bg-gray-400 px-4 lg:px-10 pt-25 pb-15">
       <motion.div
         animate={{ opacity: [0.4, 0.7, 0.4] }}
         transition={{ duration: 6, repeat: Infinity }}
@@ -121,7 +121,7 @@ export default function Privacy() {
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative max-w-4xl mx-auto text-center mb-20"
+        className="relative max-w-4xl mx-auto text-center pb-5 lg:pb-15"
       >
         <h1 className="font-60 font-bold text-white mb-6">Privacy Policy</h1>
         <p className="font-20 text-white/70 leading-relaxed">
@@ -144,7 +144,7 @@ export default function Privacy() {
                 className={`group flex items-center gap-3 w-full text-left transition-all duration-300 ${
                   active === section.id
                     ? "text-[#324dd3]"
-                    : "text-white/50 hover:text-white"
+                    : "text-white/70 hover:text-white"
                 }`}
               >
                 <span className="text-sm font-semibold">
@@ -190,12 +190,12 @@ export default function Privacy() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="relative mt-20 text-center text-white/60"
+        className="relative mt-20 text-center text-white"
       >
         For privacy-related inquiries contact us at{" "}
         <a
           href="mailto:mastermediamain@gmail.com"
-          className="text-[#324dd3] font-medium hover:underline"
+          className="text-[#324dd3] underline font-medium hover:underline"
         >
           mastermediamain@gmail.com
         </a>

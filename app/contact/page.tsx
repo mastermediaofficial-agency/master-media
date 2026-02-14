@@ -1,56 +1,65 @@
-import JoinForm from "../../src/components/contact/contactForm";
+import OurApproachCard from "@/src/components/contact/OurApproachCard";
+import ContactForm from "../../src/components/contact/contactForm";
 
-export default function contact() {
+export default function Contact() {
   return (
-    <section className="min-h-screen bg-[#d7e2f7] flex items-center justify-center px-4 lg:px-10 pt-25 md:pt-30 pb-15">
-      <div
-        className="
-          max-w-400 w-full
-          grid grid-cols-1 lg:grid-cols-2
-          gap-10
-        "
-      >
-        {/* LEFT CONTENT */}
-        <div className="flex flex-col justify-center space-y-6">
-          <h1 className="text-4xl font-bold text-gray-900">Contact Us</h1>
+    <section className="min-h-screen bg-linear-to-br from-[#eef2ff] to-[#d7e2f7] flex items-center justify-center px-4 lg:px-10 pt-25 md:pt-30 pb-10 py-24">
+      <div className="max-w-400 mx-auto w-full gap-6 lg:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+          <div className="relative rounded-3xl bg-linear-to-br from-[#324dd3] to-[#213d77] p-10 text-white shadow-2xl overflow-hidden">
+            <div className="absolute -bottom-16 -right-16 w-60 h-60 bg-white/10 rounded-full blur-3xl"></div>
+            <div
+              className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-obtain opacity-50 pointer-events-none"
+              style={{
+                backgroundImage: "url('/layers/wavy.svg')",
+              }}
+            />
 
-          <p className="text-gray-600 max-w-md">
-            Fill out the form and our team will reach out to you shortly. We’re
-            always open to collaborations, hiring, and new ideas.
-          </p>
+            <h1 className="text-4xl font-bold mb-4">
+              Let’s Build Something Powerful
+            </h1>
 
-          <div className="space-y-4 pt-4">
-            <div>
-              <p className="font-semibold text-gray-900">Customer Support</p>
-              <a
-                href="mailto:mastermediamain@gmail.com"
-                className="text-gray-600 text-sm hover:text-primary transition"
-              >
-                mastermediamain@gmail.com
-              </a>
-            </div>
+            <p className="text-white/80 max-w-md">
+              Have a project in mind? Want to collaborate or grow your brand?
+              Reach out to Master Media — we’re ready to help.
+            </p>
 
-            <div>
-              <p className="font-semibold text-gray-900">Careers</p>
-              <a
-                href="mailto:mastermediamain@gmail.com"
-                className="text-gray-600 text-sm hover:text-primary transition"
-              >
-                mastermediamain@gmail.com
-              </a>
+            <div className="mt-10 space-y-6 text-sm">
+              <div>
+                <p className="font-semibold text-white">Customer Support</p>
+                <a
+                  href="mailto:mastermediamain@gmail.com"
+                  className="text-white/80 hover:text-white transition"
+                >
+                  mastermediamain@gmail.com
+                </a>
+              </div>
+
+              <div>
+                <p className="font-semibold text-white">Business Inquiries</p>
+                <a
+                  href="mailto:mastermediamain@gmail.com"
+                  className="text-white/80 hover:text-white transition"
+                >
+                  mastermediamain@gmail.com
+                </a>
+              </div>
+              <div>
+                <p className="font-semibold text-white">Head Office</p>
+                <a
+                  href="https://www.google.com/maps/place/Orai,+Uttar+Pradesh"
+                  className="text-white/80 hover:text-white transition"
+                >
+                  Orai, Uttar Pradesh – 285001 (India)
+                </a>
+              </div>
             </div>
           </div>
+          <div className="bg-white rounded-3xl shadow-2xl p-8">
+            <ContactForm />
+          </div>
         </div>
-
-        {/* RIGHT FORM CARD */}
-        <div
-          className="
-            bg-white rounded-3xl shadow-xl
-            p-6 sm:p-8
-          "
-        >
-          <JoinForm />
-        </div>
+        <OurApproachCard />
       </div>
     </section>
   );
