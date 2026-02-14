@@ -6,7 +6,7 @@ export default function JoinButton({ onClick }: { onClick: () => void }) {
   return (
     <motion.button
       whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileTap={{ scaleY: 0.95 }}
       onClick={onClick}
       className="
         fixed -right-[-18px] top-1/2
@@ -16,8 +16,8 @@ export default function JoinButton({ onClick }: { onClick: () => void }) {
         px-4 py-3
         rounded-xl
         shadow-lg z-50
-        select-none
-
+        select-none cursor-pointer
+        
         origin-right
         -rotate-90
       "

@@ -8,11 +8,13 @@ import PartnerBelt from "@/src/components/landing/PartnerBelt";
 import Reviews from "@/src/components/landing/Reviews";
 import Services from "@/src/components/landing/Services";
 import VideoGallery from "@/src/components/landing/VideoGallery";
+// import WhatWeDo from "@/src/components/landing/WhatWeDo";
 
 export default function Home() {
   return (
     <div className="">
       <Hero />
+      {/* <WhatWeDo /> */}
       <Services />
       <MosaicCollageDemo />
       <PartnerBelt/>
@@ -25,3 +27,4 @@ export default function Home() {
     </div>
   );
 }
+

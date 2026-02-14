@@ -307,3 +307,95 @@ body {
 .delay-450 {
   animation-delay: 0.45s;
 }
+
+
+/* --hero--home--- */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(
+    -45deg,
+    #0f172a,
+    #1e293b,
+    #1e3a8a,
+    #312e81,
+    #0f172a
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+
+/* --- */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #0f172a, #1e293b, #1e3a8a, #312e81);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+
+/* ---star */
+@keyframes spaceGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.space-bg {
+  background: linear-gradient(
+    -45deg,
+    #020617,   /* deep navy */
+    #0f172a,   /* slate dark */
+    #1e3a8a,   /* royal blue */
+    #0a296c,   /* brand blue */
+    #132a77    /* darker blue */
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 18s ease infinite;
+}
+
+
+/* -- */
+.emerald-lux {
+  background: linear-gradient(
+    -45deg,
+    #052e16,
+    #065f46,
+    #10b981,
+    #047857,
+    #022c22
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 22s ease infinite;
+}
+
+
+/* --- */
+.cosmic-mix {
+  background: linear-gradient(
+    -45deg,
+    #020617,
+    #1e3a8a,
+    #9333ea,
+    #ec4899,
+    #111827
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 20s ease infinite;
+}
