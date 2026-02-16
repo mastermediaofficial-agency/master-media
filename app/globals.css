@@ -308,6 +308,18 @@ body {
   animation-delay: 0.45s;
 }
 
+/* --home-image-gallery--- */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gallery-gradient {
+  background: linear-gradient(-45deg, #2b3b55, #5C6BC0, #1e3a8a, #312e81);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
 
 /* --hero--home--- */
 @keyframes gradientMove {

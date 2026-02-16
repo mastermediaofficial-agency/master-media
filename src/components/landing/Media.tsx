@@ -1,101 +1,152 @@
 "use client";
 
-import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
 
-const sampleImages = [
-  "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=600",
-  "https://images.unsplash.com/photo-1682687221038-404cb8830901?w=600",
-  "https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=600",
-  "https://images.unsplash.com/photo-1682687220923-c58b9a4592ae?w=600",
-  "https://images.unsplash.com/photo-1682687221080-5cb261c645cb?w=600",
-  "https://images.unsplash.com/photo-1682687221363-72518513620e?w=600",
-   "https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=600",
-  "https://images.unsplash.com/photo-1682687221038-404cb8830901?w=600",
-  "https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=600",
-  "https://images.unsplash.com/photo-1682687220923-c58b9a4592ae?w=600",
-  "https://images.unsplash.com/photo-1682687221080-5cb261c645cb?w=600",
-  "https://images.unsplash.com/photo-1682687221080-5cb261c645cb?w=600",
-  "https://images.unsplash.com/photo-1682687221080-5cb261c645cb?w=600",
+const images = [
+  "photo-1682687220742-aba13b6e50ba",
+  "photo-1682687221038-404cb8830901",
+  "photo-1682687220063-4742bd7fd538",
+  "photo-1682687220923-c58b9a4592ae",
+  "photo-1682687220742-aba13b6e50ba",
+  "photo-1682687221038-404cb8830901",
+  "photo-1682687220063-4742bd7fd538",
+  "photo-1682687220923-c58b9a4592ae",
+  "photo-1682687221038-404cb8830901",
+  "photo-1682687220063-4742bd7fd538",
+  "photo-1682687220923-c58b9a4592ae",
+  "photo-1682687221038-404cb8830901",
+  "photo-1682687221038-404cb8830901",
 ];
 
-function random(min: number, max: number) {
-  return Math.random() * (max - min) + min;
-}
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.06,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1] as const, // premium easing
+    },
+  },
+};
+
+const ImageCard = ({ id }: { id: string }) => {
+  return (
+    <motion.div
+      variants={itemVariants}
+      className="relative group cursor-pointer overflow-hidden rounded-2xl aspect-square"
+      whileHover={{ y: -8 }}
+      transition={{ type: "spring", stiffness: 120 }}
+    >
+      {/* Image */}
+      <motion.img
+        src={`https://images.unsplash.com/${id}?w=900`}
+        alt=""
+        className="w-full h-full object-cover transition-transform duration-700 ease-out"
+        whileHover={{ scale: 1.12 }}
+      />
+
+      <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-all duration-500" />
+    </motion.div>
+  );
+};
 
 export default function Media() {
-  // Mouse position (normalized -0.5 → 0.5)
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Smooth spring
-  const smoothX = useSpring(mouseX, { stiffness: 50, damping: 20 });
-  const smoothY = useSpring(mouseY, { stiffness: 50, damping: 20 });
-
-  useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-      const x = e.clientX / window.innerWidth - 0.5;
-      const y = e.clientY / window.innerHeight - 0.5;
-      mouseX.set(x);
-      mouseY.set(y);
-    };
-
-    window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
-  }, [mouseX, mouseY]);
-
-  const layers = useMemo(
-    () =>
-      sampleImages.map(() => ({
-        depth: random(10, 40),
-        rotate: random(-3, 3),
-        scale: random(0.95, 1.05),
-      })),
-    []
-  );
-
   return (
-    <section className="relative w-full bg-gradient-to-b from-slate-950 via-slate-900 to-black py-24 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4">
-        {/* Masonry */}
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-6">
-          {sampleImages.map((src, i) => {
-            const layer = layers[i];
+    <section className="relative w-full gallery-gradient py-10 lg:py-15 px-4 lg:px-10 overflow-hidden">
+      <motion.div
+        className="absolute inset-0 
+               bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)]
+               bg-size-[18px_18px]"
+        initial={{ opacity: 0.05, scale: 1 }}
+        animate={{
+          opacity: [0.05, 0.12, 0.05],
+          scale: [1, 1.03, 1],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      {/* Heading */}
+      <div className="mb-14 lg:mb-20 text-center max-w-4xl mx-auto">
+        <h2 className="text-4xl lg:text-6xl font-extrabold text-white tracking-tight">
+          Impact in Action
+        </h2>
+        <p className="text-lg lg:text-xl text-white/80 mt-6 leading-relaxed">
+          A glimpse into our impactful work and the communities we serve.
+        </p>
+      </div>
 
-            const x = useTransform(smoothX, (v) => v * layer.depth);
-            const y = useTransform(smoothY, (v) => v * layer.depth);
+      {/* Desktop */}
+      <div className="hidden md:block max-w-[1400px] mx-auto">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.15 }}
+          className="flex flex-col gap-6"
+        >
+          <div className="grid grid-cols-6 gap-4">
+            {images.slice(0, 6).map((id, i) => (
+              <ImageCard key={i} id={id} />
+            ))}
+          </div>
 
-            return (
-              <motion.div
-                key={i}
-                style={{ x, y }}
-                className="mb-6 break-inside-avoid"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: layer.scale }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-              >
-                <motion.div
-                  whileHover={{
-                    scale: 1.05,
-                    rotate: 0,
-                  }}
-                  className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/40 backdrop-blur-sm"
-                  style={{ rotate: layer.rotate }}
-                >
-                  <Image
-                    src={src}
-                    alt="media"
-                    width={600}
-                    height={800}
-                    className="w-full h-auto object-cover"
-                  />
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </div>
+          <div className="grid grid-cols-4 gap-4">
+            {images.slice(3, 7).map((id, i) => (
+              <ImageCard key={i} id={id} />
+            ))}
+          </div>
+
+          <div className="grid grid-cols-6 gap-4">
+            {images.slice(7, 13).map((id, i) => (
+              <ImageCard key={i} id={id} />
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Mobile */}
+      <div className="block md:hidden max-w-[1200px] mx-auto">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.15 }}
+          className="flex flex-col gap-4"
+        >
+          <div className="grid grid-cols-3 gap-3">
+            {images.slice(0, 3).map((id, i) => (
+              <ImageCard key={i} id={id} />
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            {images.slice(3, 5).map((id, i) => (
+              <ImageCard key={i} id={id} />
+            ))}
+          </div>
+
+          <div className="grid grid-cols-3 gap-3">
+            {images.slice(5, 8).map((id, i) => (
+              <ImageCard key={i} id={id} />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
