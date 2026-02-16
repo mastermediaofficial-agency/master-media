@@ -57,18 +57,18 @@ const PartnerBelt = () => {
                 rounded-2xl
                 bg-[#879ee718]
                 px-6
-                py-5
+                py-3
                 shadow-[0_8px_30px_rgba(0,0,0,0.04)]
                 flex
                 flex-col
                 justify-between
               "
             >
-              <p className="text-sm text-center font-bold text-black">
+              {/* <p className="text-sm text-center font-bold text-black">
                 {item.title}
-              </p>
+              </p> */}
 
-              <div className="relative mt-6 h-14 w-full">
+              <div className="relative h-30">
                 <Image
                   src={item.logo}
                   alt={item.alt}

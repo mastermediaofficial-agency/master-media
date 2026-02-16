@@ -1,22 +1,47 @@
 export const PARTNER_BELT = [
   {
     title: "Banking Partner",
-    logo: "/logos/ey.png",
+    logo: "/content/partnerBelt/37.png",
     alt: "ICICI Bank",
   },
   {
     title: "Tax Advisor",
-    logo: "/logos/ey.png",
+    logo: "/content/partnerBelt/38.png",
     alt: "EY",
   },
   {
     title: "Alt DRX Master Escrow Agent",
-    logo: "/logos/ey.png",
+    logo: "/content/partnerBelt/39.png",
     alt: "Mitcon Credentia",
   },
   {
-    title: "Legal Advisor",
-    logo: "/logos/ey.png",
-    alt: "IndusLaw",
+    title: "-",
+    logo: "/content/partnerBelt/40.png",
+    alt: "Partner",
+  },
+    {
+    title: "-",
+    logo: "/content/partnerBelt/41.png",
+    alt: "Partner",
+  },
+    {
+    title: "-",
+    logo: "/content/partnerBelt/42.png",
+    alt: "Partner",
+  },
+    {
+    title: "-",
+    logo: "/content/partnerBelt/43.png",
+    alt: "Partner",
+  },
+    {
+    title: "-",
+    logo: "/content/partnerBelt/44.png",
+    alt: "Partner",
+  },
+    {
+    title: "-",
+    logo: "/content/partnerBelt/45.png",
+    alt: "Partner",
   },
 ];

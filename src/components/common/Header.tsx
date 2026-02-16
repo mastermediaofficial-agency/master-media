@@ -60,7 +60,7 @@ export default function Header() {
           ${scrollDir === "up" ? "mt-4 scale-[1.01]" : "mt-6 scale-100"}`}
         >
           <div
-            className={`flex h-16 md:h-20 items-center justify-between rounded-2xl px-6 backdrop-blur-lg
+            className={`flex h-13 md:h-16 items-center justify-between rounded-2xl px-6 backdrop-blur-lg
             transition-all duration-500 ease-out
             ${
               scrollDir === "up"
@@ -69,12 +69,12 @@ export default function Header() {
             }`}
           >
             {/* LOGO */}
-            <Link href="/" className="relative h-full w-20 md:w-32">
+            <Link href="/" className="relative h-full w-20 md:w-25">
               <Image
-                src="/mm-logo-trans.png"
+                src="/master-media-logo.png"
                 alt="Master Media"
                 fill
-                className="object-contain"
+                className="object-cover"
                 priority
               />
             </Link>
@@ -92,7 +92,7 @@ export default function Header() {
                     ${active ? "text-black" : "text-gray-600 hover:text-black"}`}
                   >
                     <span
-                      className={`font-18 transition-transform ${
+                      className={`font-16 transition-transform ${
                         active ? "scale-110" : "group-hover:scale-110"
                       }`}
                     >

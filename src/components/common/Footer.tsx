@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineCopyright } from "react-icons/ai";
 import { FaWhatsapp } from "react-icons/fa";
@@ -18,6 +19,19 @@ export default function Footer() {
         {/* TOP GRID */}
         <div className="flex flex-col gap-12 lg:flex-row lg:gap-5 lg:justify-between">
           <div className="max-w-xl text-center lg:text-left">
+            <div className="flex justify-center lg:justify-start">
+              <Link href="/">
+                <Image
+                  src="/master-media-logo.png"
+                  alt="Master Media Logo"
+                  width={180}
+                  height={70}
+                  className="h-20 lg:h-25 w-auto object-contain brightness-0 invert"
+                  priority
+                />
+              </Link>
+            </div>
+
             <h3 className="mb-4 text-2xl font-bold leading-snug">
               Congrats! <br />
               You actually reached the footer.
@@ -135,7 +149,9 @@ export default function Footer() {
         <div className="mt-8 flex flex-col gap-5 border-t border-white/15 pt-4 text-center sm:flex-row sm:items-center sm:justify-between">
           <span className="flex flex-wrap items-center justify-center gap-1 text-white/60 text-sm md:text-base leading-normal tracking-normal whitespace-nowrap">
             <AiOutlineCopyright />
-            <span>{new Date().getFullYear()} Master Media, All right reserved.</span>
+            <span>
+              {new Date().getFullYear()} Master Media, All right reserved.
+            </span>
             <span className="flex items-center gap-1 italic">
               "Built with
               <GiCoffeeCup className="text-amber-400 animate-pulse text-lg" />&
