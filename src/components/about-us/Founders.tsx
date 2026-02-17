@@ -10,7 +10,7 @@ const founders = [
   {
     name: "Mr. Abhi Gupta",
     role: "CEO & Co-Founder",
-    image: "/abhi.jpg",
+    image: "/images/Abhi_Gupta.webp",
     bio: `The brain behind the brand. Sahil believes marketing isn&apos;t about selling —
     it&apos;s about storytelling that converts. When he&apos;s not building empires,
     he&apos;s probably planning the next one.`,
@@ -19,7 +19,7 @@ const founders = [
   {
     name: "Mr. Aman Gupta",
     role: "Co-Founder",
-    image: "/gupta.jpg",
+    image: "/images/Aman_Gupta.jpg",
     bio: `Strategic thinker. Vision architect. Calm in chaos.
     Jestin ensures Master Media doesn&apos;t just follow trends —
     we create them. Also secretly the team&apos;s problem-solver.`,
@@ -47,7 +47,7 @@ export default function Founders() {
         Meet The Founders
       </motion.h2>
 
-      <div className="grid md:grid-cols-2 gap-6 lg:gap-16 max-w-5xl mx-auto">
+      <div className="grid md:grid-cols-2 gap-6 lg:gap-16 max-w-4xl mx-auto">
         {founders.map((founder, index) => (
           <FlipCard
             key={index}
@@ -66,7 +66,7 @@ export default function Founders() {
 function FlipCard({ founder, isActive, onHover, onLeave }: any) {
   return (
     <div
-      className="relative w-full h-[420px] cursor-pointer"
+      className="relative aspect-square cursor-pointer"
       style={{ perspective: "1200px" }}
       onMouseEnter={(e) => {
         e.stopPropagation();
@@ -91,27 +91,23 @@ function FlipCard({ founder, isActive, onHover, onLeave }: any) {
       >
         {/* FRONT */}
         <div
-          className="
-            absolute inset-0
-            bg-white rounded-xl
-            shadow-xl border border-gray-200
-            flex flex-col items-center justify-center p-6
-          "
-          style={{
-            backfaceVisibility: "hidden",
-          }}
+          className="absolute inset-0 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden"
+          style={{ backfaceVisibility: "hidden" }}
         >
-          <Image
-            src={founder.image}
-            alt={founder.name}
-            width={200}
-            height={200}
-            className="rounded-xl object-cover"
-          />
-          <h3 className="mt-6 text-xl font-bold text-primary">
-            {founder.name}
-          </h3>
-          <p className="text-gray mt-2">{founder.role}</p>
+          <div className="relative w-full h-[75%]">
+            <Image
+              src={founder.image}
+              alt={founder.name}
+              fill
+              className="object-contain"
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
+          </div>
+
+          <div className="p-4 text-center">
+            <h3 className="font-24 font-bold text-primary">{founder.name}</h3>
+            <p className="text-gray text-sm mt-1">{founder.role}</p>
+          </div>
         </div>
 
         {/* BACK */}
@@ -138,7 +134,7 @@ function FlipCard({ founder, isActive, onHover, onLeave }: any) {
               className="
               mt-8 inline-flex items-center justify-center
               w-12 h-12
-              rounded-full
+              rounded-full shrink-0
               bg-white text-[#324dd3]
               transition-all duration-300
               hover:scale-110 hover:bg-[#e8edff]

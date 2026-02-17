@@ -1,5 +1,7 @@
 import OurApproachCard from "@/src/components/contact/OurApproachCard";
 import ContactForm from "../../src/components/contact/contactForm";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Contact() {
   return (
@@ -52,6 +54,18 @@ export default function Contact() {
                 >
                   Orai, Uttar Pradesh – 285001 (India)
                 </a>
+              </div>
+              <div>
+                <Link href="/">
+                  <Image
+                    src="/master-media-logo.png"
+                    alt="Master Media Logo"
+                    width={180}
+                    height={70}
+                    className="h-24 w-auto object-contain invert brightness-0"
+                    priority
+                  />
+                </Link>
               </div>
             </div>
           </div>

@@ -3,19 +3,23 @@
 import { motion } from "framer-motion";
 
 const images = [
-  "photo-1682687220742-aba13b6e50ba",
-  "photo-1682687221038-404cb8830901",
-  "photo-1682687220063-4742bd7fd538",
-  "photo-1682687220923-c58b9a4592ae",
-  "photo-1682687220742-aba13b6e50ba",
-  "photo-1682687221038-404cb8830901",
-  "photo-1682687220063-4742bd7fd538",
-  "photo-1682687220923-c58b9a4592ae",
-  "photo-1682687221038-404cb8830901",
-  "photo-1682687220063-4742bd7fd538",
-  "photo-1682687220923-c58b9a4592ae",
-  "photo-1682687221038-404cb8830901",
-  "photo-1682687221038-404cb8830901",
+  "/content/brands/home/Photo (1).webp",
+  "/content/brands/home/Photo (2).webp",
+  "/content/brands/home/Photo (3).webp",
+  "/content/brands/home/Photo (4).webp",
+  "/content/brands/home/Photo (5).webp",
+  "/content/brands/home/Photo (6).webp",
+  "/content/brands/home/Photo (7).webp",
+  "/content/brands/home/Photo (8).webp",
+  "/content/brands/home/Photo (9).webp",
+  "/content/brands/home/Photo (10).webp",
+  "/content/brands/home/Photo (11).webp",
+  "/content/brands/home/Photo (12).webp",
+  "/content/brands/home/Photo (13).webp",
+  "/content/brands/home/Photo (14).webp",
+  "/content/brands/home/Photo (15).webp",
+  "/content/brands/home/Photo (16).webp",
+  "/content/brands/home/Photo (17).webp",
 ];
 
 const containerVariants = {
@@ -41,7 +45,7 @@ const itemVariants = {
   },
 };
 
-const ImageCard = ({ id }: { id: string }) => {
+const ImageCard = ({ src }: { src: string }) => {
   return (
     <motion.div
       variants={itemVariants}
@@ -49,9 +53,8 @@ const ImageCard = ({ id }: { id: string }) => {
       whileHover={{ y: -8 }}
       transition={{ type: "spring", stiffness: 120 }}
     >
-      {/* Image */}
       <motion.img
-        src={`https://images.unsplash.com/${id}?w=900`}
+        src={src}
         alt=""
         className="w-full h-full object-cover transition-transform duration-700 ease-out"
         whileHover={{ scale: 1.12 }}
@@ -101,20 +104,20 @@ export default function Media() {
           className="flex flex-col gap-6"
         >
           <div className="grid grid-cols-6 gap-4">
-            {images.slice(0, 6).map((id, i) => (
-              <ImageCard key={i} id={id} />
+            {images.slice(0, 6).map((src, i) => (
+              <ImageCard key={i} src={src} />
             ))}
           </div>
 
           <div className="grid grid-cols-4 gap-4">
-            {images.slice(3, 7).map((id, i) => (
-              <ImageCard key={i} id={id} />
+            {images.slice(6, 10).map((src, i) => (
+              <ImageCard key={i} src={src} />
             ))}
           </div>
 
           <div className="grid grid-cols-6 gap-4">
-            {images.slice(7, 13).map((id, i) => (
-              <ImageCard key={i} id={id} />
+            {images.slice(10, 16).map((src, i) => (
+              <ImageCard key={i} src={src} />
             ))}
           </div>
         </motion.div>
@@ -130,20 +133,20 @@ export default function Media() {
           className="flex flex-col gap-4"
         >
           <div className="grid grid-cols-3 gap-3">
-            {images.slice(0, 3).map((id, i) => (
-              <ImageCard key={i} id={id} />
+            {images.slice(0, 3).map((src, i) => (
+              <ImageCard key={i} src={src} />
             ))}
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            {images.slice(3, 5).map((id, i) => (
-              <ImageCard key={i} id={id} />
+            {images.slice(3, 5).map((src, i) => (
+              <ImageCard key={i} src={src} />
             ))}
           </div>
 
           <div className="grid grid-cols-3 gap-3">
-            {images.slice(5, 8).map((id, i) => (
-              <ImageCard key={i} id={id} />
+            {images.slice(5, 8).map((src, i) => (
+              <ImageCard key={i} src={src} />
             ))}
           </div>
         </motion.div>
