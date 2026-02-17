@@ -14,10 +14,10 @@ import { GiCoffeeCup } from "react-icons/gi";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-primary-dark text-white font-sans p-4 lg:p-10 overflow-hidden">
-      <div className="mx-auto max-w-400 pb-5">
+    <footer className="relative bg-primary-dark text-white font-sans p-4 lg:px-10 lg:py-8 overflow-hidden">
+      <div className="mx-auto max-w-400">
         {/* TOP GRID */}
-        <div className="flex flex-col gap-12 lg:flex-row lg:gap-5 lg:justify-between">
+        <div className="flex flex-col gap-8 lg:flex-row lg:gap-5 lg:justify-between">
           <div className="max-w-xl text-center lg:text-left">
             <div className="flex justify-center lg:justify-start">
               <Link href="/">
@@ -26,19 +26,19 @@ export default function Footer() {
                   alt="Master Media Logo"
                   width={180}
                   height={70}
-                  className="h-20 lg:h-25 w-auto object-contain brightness-0 invert"
+                  className="h-24 w-auto object-contain invert brightness-90"
                   priority
                 />
               </Link>
             </div>
 
-            <h3 className="mb-4 text-2xl font-bold leading-snug">
+            <h3 className="mb-4 font-24 font-bold leading-snug">
               Congrats! <br />
               You actually reached the footer.
             </h3>
 
             <div className="flex flex-col gap-5">
-              <p className="text-base leading-relaxed text-white/75">
+              <p className="font-16 leading-relaxed text-white/75">
                 Achievement Unlocked:{" "}
                 <strong className="text-white">Master of the Scroll</strong> 🏆
                 We&apos;ve credited{" "}
@@ -46,7 +46,7 @@ export default function Footer() {
                 your brand — time to level up.
               </p>
 
-              <p className="max-w-xl text-base leading-relaxed text-white/70">
+              <p className="max-w-xl font-16 leading-relaxed text-white/70">
                 Master Media is an elite, Pan-India digital marketing agency
                 powered by squad of &quot;Dhurandhar&quot; specialists. We
                 deliver results-first, full-stack &quot;Damdaar&quot; creative
@@ -56,12 +56,12 @@ export default function Footer() {
           </div>
 
           {/* LINKS GRID */}
-          <div className="grid grid-cols-1 gap-10 text-center sm:grid-cols-2 lg:grid-cols-3 lg:gap-16 lg:text-left">
+          <div className="grid grid-cols-1 gap-8 text-center sm:grid-cols-2 lg:grid-cols-3 lg:gap-16 lg:text-left">
             <div>
-              <p className="mb-4 text-lg uppercase tracking-wider font-bold text-gray-300">
+              <p className="mb-4 font-18 uppercase tracking-wider font-bold text-gray-300">
                 Company
               </p>
-              <div className="flex flex-col gap-3 text-base font-medium items-center lg:items-start">
+              <div className="flex flex-col gap-3 font-16 font-medium items-center lg:items-start">
                 {["About Us", "Services", "Career"].map((item) => (
                   <Link
                     key={item}
@@ -78,10 +78,10 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="mb-4 text-lg uppercase tracking-wider font-bold text-gray-300">
+              <p className="mb-4 font-18 uppercase tracking-wider font-bold text-gray-300">
                 Resources
               </p>
-              <div className="flex flex-col gap-3 text-base font-medium items-center lg:items-start">
+              <div className="flex flex-col gap-3 font-16 font-medium items-center lg:items-start">
                 {[
                   { title: "Contact Us", url: "/contact" },
                   { title: "Privacy Policy", url: "/privacy" },
@@ -102,7 +102,7 @@ export default function Footer() {
 
             {/* SOCIALS */}
             <div className="flex flex-col items-center">
-              <p className="mb-4 text-lg uppercase tracking-wider font-bold text-gray-300">
+              <p className="mb-4 font-18 uppercase tracking-wider font-bold text-gray-300">
                 Follow Us
               </p>
 
@@ -146,16 +146,16 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM BAR 🇮🇳 • */}
-        <div className="mt-8 flex flex-col gap-5 border-t border-white/15 pt-4 text-center sm:flex-row sm:items-center sm:justify-between">
-          <span className="flex flex-wrap items-center justify-center gap-1 text-white/60 text-sm md:text-base leading-normal tracking-normal whitespace-nowrap">
+        <div className="mt-4 flex flex-col gap-5 border-t border-white/15 pt-4 text-center sm:flex-row sm:items-center sm:justify-between">
+          <span className="flex flex-wrap items-center justify-center gap-1 text-white/60 font-16 leading-normal tracking-normal whitespace-nowrap">
             <AiOutlineCopyright />
             <span>
               {new Date().getFullYear()} Master Media, All right reserved.
             </span>
             <span className="flex items-center gap-1 italic">
-              "Built with
-              <GiCoffeeCup className="text-amber-400 animate-pulse text-lg" />&
-              ideas."
+              &ldquo;Built with
+              <GiCoffeeCup className="text-amber-400 animate-pulse font-18" />&
+              ideas.&rdquo;
             </span>
           </span>
           <button

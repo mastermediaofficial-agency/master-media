@@ -60,7 +60,7 @@ export default function Header() {
           ${scrollDir === "up" ? "mt-4 scale-[1.01]" : "mt-6 scale-100"}`}
         >
           <div
-            className={`flex h-13 md:h-16 items-center justify-between rounded-2xl px-6 backdrop-blur-lg
+            className={`flex h-14 md:h-18 items-center justify-between rounded-2xl px-6 backdrop-blur-lg
             transition-all duration-500 ease-out
             ${
               scrollDir === "up"
