@@ -19,7 +19,7 @@ export default function OurApproachCard() {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
         className="absolute bottom-0 left-0 w-full h-full bg-right bg-no-repeat bg-obtain select-none pointer-events-none"
-        style={{ backgroundImage: "url('/layers/wire.svg')" }}
+        style={{ backgroundImage: "url('/layers/wire.webp')" }}
       />
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-size-[18px_18px]" />
 

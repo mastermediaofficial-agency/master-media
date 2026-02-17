@@ -19,7 +19,7 @@ const founders = [
   {
     name: "Mr. Aman Gupta",
     role: "Co-Founder",
-    image: "/images/Aman_Gupta.jpg",
+    image: "/images/Aman_Gupta.webp",
     bio: `Strategic thinker. Vision architect. Calm in chaos.
     Jestin ensures Master Media doesn&apos;t just follow trends —
     we create them. Also secretly the team&apos;s problem-solver.`,

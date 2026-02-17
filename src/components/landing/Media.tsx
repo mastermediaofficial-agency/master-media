@@ -100,7 +100,7 @@ export default function Media() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.15 }}
+          viewport={{ once: true, amount: 0.15 }}
           className="flex flex-col gap-6"
         >
           <div className="grid grid-cols-6 gap-4">
@@ -129,7 +129,7 @@ export default function Media() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.15 }}
+          viewport={{ once: true, amount: 0.15 }}
           className="flex flex-col gap-4"
         >
           <div className="grid grid-cols-3 gap-3">

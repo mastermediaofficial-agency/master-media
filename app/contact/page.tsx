@@ -13,7 +13,7 @@ export default function Contact() {
             <div
               className="absolute bottom-0 left-0 w-full h-full bg-no-repeat bg-bottom bg-obtain opacity-50 pointer-events-none"
               style={{
-                backgroundImage: "url('/layers/wavy.svg')",
+                backgroundImage: "url('/layers/wavy.webp')",
               }}
             />
 

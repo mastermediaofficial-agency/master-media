@@ -62,7 +62,7 @@ export default function Footer() {
                 Company
               </p>
               <div className="flex flex-col gap-3 font-16 font-medium items-center lg:items-start">
-                {["About Us", "Services", "Career"].map((item) => (
+                {["About Us", "Services", "Careers"].map((item) => (
                   <Link
                     key={item}
                     href={`/${item.toLowerCase().replace(/\s/g, "-")}`}

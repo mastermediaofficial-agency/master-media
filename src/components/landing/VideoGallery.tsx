@@ -17,12 +17,13 @@ const VideoGallery: React.FC = () => {
   const videoRefs = useRef<HTMLVideoElement[]>([]);
 
   const videos: VideoItem[] = [
-    { id: 1, src: "/videos/video.mp4", title: "Global Cultural Exchange" },
-    { id: 2, src: "/videos/video.mp4", title: "Impactful Community Events" },
-    { id: 3, src: "/videos/video.mp4", title: "Celebrating Diversity" },
-    { id: 4, src: "/videos/video.mp4", title: "Global Cultural Exchange" },
-    { id: 5, src: "/videos/video.mp4", title: "Impactful Community Events" },
-    { id: 6, src: "/videos/video.mp4", title: "Celebrating Diversity" },
+    { id: 1, src: "content/videos/1.mp4", title: "Master Media" },
+    { id: 2, src: "content/videos/2.mp4", title: "Master Media" },
+    { id: 3, src: "content/videos/3.mp4", title: "Master Media" },
+    { id: 4, src: "content/videos/4.mp4", title: "Master Media" },
+    { id: 5, src: "content/videos/5.mp4", title: "Master Media" },
+    { id: 6, src: "content/videos/6.mp4", title: "Master Media" },
+    { id: 7, src: "content/videos/7.mp4", title: "Master Media" },
   ];
 
   // Lock background scroll when modal is open
@@ -112,10 +113,10 @@ const VideoGallery: React.FC = () => {
           autoplay={{ delay: 3500, disableOnInteraction: false }}
           className="px-4"
           onSwiper={(swiper) => {
-            playActiveVideo(swiper.activeIndex+1);
+            playActiveVideo(swiper.activeIndex + 1);
           }}
           onSlideChange={(swiper) => {
-            playActiveVideo(swiper.activeIndex+1);
+            playActiveVideo(swiper.activeIndex + 1);
           }}
         >
           {videos.map((item, index) => (

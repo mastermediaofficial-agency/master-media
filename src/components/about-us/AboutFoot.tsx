@@ -5,7 +5,7 @@ import { GoArrowRight } from "react-icons/go";
 const AboutFoot = () => {
   return (
     <section className="relative w-full bg-primary-light text-white overflow-hidden">
-      <div className="absolute -bottom-80 inset-0 opacity-100 bg-[url('/layers/layer.png')] bg-no-repeat bg-left bg-cover"></div>
+      <div className="absolute -bottom-80 inset-0 opacity-100 bg-[url('/layers/layer.webp')] bg-no-repeat bg-left bg-cover"></div>
 
       <div className="relative max-w-400 mx-auto px-4 md:px-10 py-15">
         <div className="max-w-3xl">

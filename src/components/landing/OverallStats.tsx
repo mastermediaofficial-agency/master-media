@@ -25,7 +25,7 @@ export default function OverallStats() {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
         className="absolute top-0 left-0 w-full h-full opacity-0 bg-no-repeat bg-cover select-none pointer-events-none "
-        style={{ backgroundImage: "url('/layers/tile.svg')" }}
+        style={{ backgroundImage: "url('/layers/tile.webp')" }}
       />
 
       <div className="relative mx-auto max-w-6xl text-center">
