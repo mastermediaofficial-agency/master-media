@@ -1,10 +1,13 @@
 "use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
+
+// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import { FaRegCirclePlay } from "react-icons/fa6";
+import "swiper/css/effect-coverflow";
 
 interface VideoItem {
   id: number;
@@ -14,7 +17,7 @@ interface VideoItem {
 
 const VideoGallery: React.FC = () => {
   const [zoomIndex, setZoomIndex] = useState<number | null>(null);
-  const videoRefs = useRef<HTMLVideoElement[]>([]);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const videos: VideoItem[] = [
     { id: 1, src: "content/videos/1.mp4", title: "Master Media" },
@@ -29,37 +32,17 @@ const VideoGallery: React.FC = () => {
   // Lock background scroll when modal is open
   useEffect(() => {
     if (zoomIndex !== null) {
-      const originalStyle = window.getComputedStyle(document.body).overflow;
       document.body.style.overflow = "hidden";
-
-      return () => {
-        document.body.style.overflow = originalStyle;
-      };
-    }
-    if (zoomIndex === null) {
-      document.querySelectorAll("video").forEach((v) => {
-        v.pause();
-        v.currentTime = 0;
-      });
+    } else {
+      document.body.style.overflow = "unset";
     }
   }, [zoomIndex]);
 
-  // ESC to close modal
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setZoomIndex(null);
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
-
-  const playActiveVideo = (index: number) => {
+  // Handle video playback logic for the carousel
+  const handlePlayState = (activeIndex: number) => {
     videoRefs.current.forEach((video, i) => {
       if (!video) return;
-
-      if (i === index) {
-        video.muted = true;
-        video.playsInline = true;
+      if (i === activeIndex) {
         video.play().catch(() => {});
       } else {
         video.pause();
@@ -68,147 +51,106 @@ const VideoGallery: React.FC = () => {
     });
   };
 
-  // Pause all videos when modal opens
-  useEffect(() => {
-    if (zoomIndex !== null) {
-      videoRefs.current.forEach((v) => {
-        if (v) {
-          v.pause();
-          v.currentTime = 0;
-        }
-      });
-    }
-  }, [zoomIndex]);
-
   return (
-    <section className="relative py-10 lg:py-20 bg-primary-dark">
-      <div className="mb-14 text-center">
-        <h2 className="font-48 font-extrabold text-white ">
+    <section className="relative py-10 lg:py-20 bg-[#1a237e]">
+      {/* Header Text from your original component */}
+      <div className="mb-14 text-center px-4">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
           Impact, Frame by Frame
         </h2>
-        <p className="mt-2 font-20 text-white max-w-3xl mx-auto">
+        <p className="text-lg md:text-xl text-white max-w-3xl mx-auto opacity-90">
           A glimpse into our impactful work and the communities we serve.
         </p>
       </div>
 
-      <div className="max-w-400 mx-auto px-4 md:px-10">
-        {/* Main Swiper */}
+      <div className="w-full max-w-7xl mx-auto px-4">
         <Swiper
           modules={[Pagination, Autoplay, EffectCoverflow]}
           effect="coverflow"
+          grabCursor={true}
+          centeredSlides={true}
+          loop={true}
+          slidesPerView={"auto"}
           coverflowEffect={{
-            rotate: 10,
+            rotate: 35,      // The "Tilt" angle from your reference
             stretch: 0,
-            depth: 150,
-            modifier: 2,
-            slideShadows: false,
-          }}
-          spaceBetween={35}
-          slidesPerView={1}
-          breakpoints={{
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
+            depth: 250,      // Depth of side slides
+            modifier: 1,
+            slideShadows: true,
           }}
           pagination={{ clickable: true }}
-          autoplay={{ delay: 3500, disableOnInteraction: false }}
-          className="px-4"
-          onSwiper={(swiper) => {
-            playActiveVideo(swiper.activeIndex + 1);
-          }}
-          onSlideChange={(swiper) => {
-            playActiveVideo(swiper.activeIndex + 1);
-          }}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          onSlideChange={(swiper) => handlePlayState(swiper.realIndex)}
+          className="!pb-16"
         >
           {videos.map((item, index) => (
-            <SwiperSlide key={item.id}>
+            <SwiperSlide 
+              key={item.id} 
+              className="!w-[280px] md:!w-[320px] aspect-[9/16]"
+            >
               <div
-                className="relative overflow-hidden rounded-xl cursor-pointer group"
-                onMouseEnter={() => videoRefs.current[index]?.play()}
-                onMouseLeave={() => {
-                  const v = videoRefs.current[index];
-                  if (v) {
-                    v.pause();
-                    v.currentTime = 0;
-                  }
-                }}
+                className="relative h-full w-full overflow-hidden rounded-2xl cursor-pointer group shadow-2xl"
                 onClick={() => setZoomIndex(index)}
               >
                 <video
-                  ref={(el) => {
-                    if (el) videoRefs.current[index] = el;
-                  }}
+                  ref={(el) => { videoRefs.current[index] = el; }}
                   src={item.src}
                   muted
                   loop
                   playsInline
                   preload="metadata"
-                  className="h-[500px] w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
 
-                {/* Gradient overlay */}
-                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent group-hover:opacity-0 transition-opacity duration-500" />
+                {/* Gradient overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
-                {/* Title */}
-                <div className="absolute bottom-6 left-6 right-6 text-white group-hover:opacity-0 transition-opacity duration-500">
-                  <h3 className="font-18 font-medium drop-shadow-lg">
+                {/* Title Overlay */}
+                <div className="absolute bottom-6 left-6 text-white">
+                  <h3 className="text-lg font-semibold drop-shadow-lg">
                     {item.title}
                   </h3>
                 </div>
-
-                {/* Optional play icon overlay */}
-                {/* <div className="absolute inset-0 flex items-center justify-center opacity-0 ">
-                  <div className="bg-black/50 rounded-full p-3 text-white text-xl">
-                    <FaRegCirclePlay size={32} />
-                  </div>
-                </div> */}
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      {/* Fullscreen Video Modal */}
+      {/* Fullscreen Video Modal logic from your original code */}
       {zoomIndex !== null && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-          <Swiper
-            modules={[Pagination]}
-            pagination={{ clickable: true }}
-            initialSlide={zoomIndex}
-            className="w-full h-full flex items-center justify-center"
-          >
-            {videos.map((item, index) => (
-              <SwiperSlide
-                key={item.id}
-                className="flex! items-center! justify-center!"
-              >
-                <video
-                  src={item.src}
-                  controls
-                  autoPlay={index === zoomIndex}
-                  className="w-auto max-w-[90vw] max-h-[85vh] rounded-lg object-contain"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
+        <div className="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center p-4">
           <button
             onClick={() => setZoomIndex(null)}
-            aria-label="Close video"
-            className="
-              absolute top-6 right-6 z-100
-              flex items-center justify-center
-              w-12 h-12
-              rounded-full
-              bg-black/60
-              text-white font-24
-              hover:bg-black/80
-              transition
-            "
+            className="absolute top-6 right-6 z-[110] w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white text-2xl hover:bg-white/20 transition"
           >
             ✕
           </button>
+          
+          <div className="w-full max-w-4xl max-h-[85vh] flex items-center justify-center">
+             <video
+                src={videos[zoomIndex].src}
+                controls
+                autoPlay
+                className="max-w-full max-h-full rounded-lg shadow-2xl"
+              />
+          </div>
         </div>
       )}
+
+      {/* Custom Pagination Styling */}
+      <style jsx global>{`
+        .swiper-pagination-bullet {
+          background: rgba(255, 255, 255, 0.5) !important;
+          width: 10px;
+          height: 10px;
+        }
+        .swiper-pagination-bullet-active {
+          background: #3b82f6 !important;
+          width: 25px;
+          border-radius: 5px;
+        }
+      `}</style>
     </section>
   );
 };
