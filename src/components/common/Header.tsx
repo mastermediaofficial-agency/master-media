@@ -71,10 +71,10 @@ export default function Header() {
       <header className="fixed top-0 z-50 w-full px-4 lg:px-10 font-sans">
         <div
           className={`mx-auto max-w-400 transition-all duration-500 ease-out
-          ${scrollDir === "up" ? "mt-4 scale-[1.01]" : "mt-6 scale-100"}`}
+          ${scrollDir === "up" ? "mt-2.5 lg:mt-4 scale-[1.01]" : "mt-6 scale-100"}`}
         >
           <div
-            className={`flex h-16 md:h-18 items-center justify-between rounded-2xl px-6 backdrop-blur-lg
+            className={`flex h-14 md:h-18 items-center justify-between rounded-2xl px-6 backdrop-blur-lg
             transition-all duration-500 ease-out
             ${
               scrollDir === "up"
@@ -83,7 +83,7 @@ export default function Header() {
             }`}
           >
             {/* LOGO */}
-            <Link href="/" className="relative h-full w-20 md:w-25">
+            <Link href="/" className="relative h-full w-18 md:w-25">
               <Image
                 src="/master-media-logo.png"
                 alt="Master Media"
