@@ -18,6 +18,27 @@ const poppins = Poppins({
   display: "swap",
 });
 
+// export const metadata: Metadata = {
+//   title: {
+//     default: "Master Media",
+//     template: "%s | Master Media",
+//   },
+//   description:
+//     "Master Media is a creative digital agency delivering modern websites, branding, and digital solutions.",
+//   keywords: [
+//     "Master Media",
+//     "Digital Agency",
+//     "Web Development",
+//     "Branding",
+//     "UI UX Design",
+//   ],
+//   authors: [{ name: "Master Media" }],
+//   creator: "Master Media",
+//   metadataBase: new URL("https://www.mastermediaofficial.com"),
+//   manifest: "/manifest.json",
+//   // themeColor: "#9e00fe",
+// };
+
 export const metadata: Metadata = {
   title: {
     default: "Master Media",
@@ -25,18 +46,33 @@ export const metadata: Metadata = {
   },
   description:
     "Master Media is a creative digital agency delivering modern websites, branding, and digital solutions.",
-  keywords: [
-    "Master Media",
-    "Digital Agency",
-    "Web Development",
-    "Branding",
-    "UI UX Design",
-  ],
-  authors: [{ name: "Master Media" }],
-  creator: "Master Media",
+
   metadataBase: new URL("https://www.mastermediaofficial.com"),
-  manifest: "/manifest.json",
-  // themeColor: "#9e00fe",
+
+  openGraph: {
+    title: "Master Media",
+    description:
+      "Creative digital agency delivering modern websites, branding, and digital solutions.",
+    url: "https://www.mastermediaofficial.com",
+    siteName: "Master Media",
+    images: [
+      {
+        url: "https://www.mastermediaofficial.com/master-media-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Master Media – Digital Agency",
+      },
+    ],
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Master Media",
+    description:
+      "Creative digital agency delivering modern websites, branding, and digital solutions.",
+    images: ["https://www.mastermediaofficial.com/master-media-logo.png"],
+  },
 };
 
 export default function RootLayout({
