@@ -34,7 +34,7 @@ export default function MasterMediaGrowth() {
         </div>
         <div className="relative flex lg:justify-end justify-center select-none ">
           <motion.img
-            src="/layers/phone.webp"
+            src="/layers/phone-1.webp"
             alt="mobile"
             draggable={false}
             initial={{ opacity: 0, scale: 0.9, y: -60 }}
@@ -53,7 +53,7 @@ export default function MasterMediaGrowth() {
           />
 
           <motion.img
-            src="/layers/phone.webp"
+            src="/layers/phone-2.webp"
             alt="mobile"
             draggable={false}
             initial={{ opacity: 0, scale: 0.9, y: 60 }}

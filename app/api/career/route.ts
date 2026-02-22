@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     );
   }
 
-  // ✅ Email OR Phone required
+  // Email OR Phone required
   if (!hasEmail && !hasPhone) {
     return NextResponse.json(
       { error: "Email or phone number is required." },
