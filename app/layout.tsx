@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Master Media" }],
   creator: "Master Media",
-  metadataBase: new URL("https://mastermedia.in"),
+  metadataBase: new URL("https://www.mastermediaofficial.com"),
   manifest: "/manifest.json",
   // themeColor: "#9e00fe",
 };

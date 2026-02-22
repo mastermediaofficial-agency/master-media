@@ -55,7 +55,7 @@ const ImageCard = React.memo(({ src }: { src: string }) => {
   return (
     <motion.div
       variants={itemVariants}
-      className="relative group cursor-pointer overflow-hidden rounded-xl lg:rounded-2xl aspect-square bg-white/5 will-change-transform"
+      className="relative group cursor-pointer overflow-hidden rounded-xl lg:rounded-2xl bg-white/5 aspect-[4/6] will-change-transform"
     >
       <Image
         src={src}

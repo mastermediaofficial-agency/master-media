@@ -10,9 +10,9 @@ const AboutFoot = () => {
       <div className="relative max-w-400 mx-auto px-4 md:px-10 py-15">
         <div className="max-w-3xl">
           <h1 className="font-48 font-bold leading-tight mb-6">
-            We Don’t Just Build Media.
+            We Don’t Just Build BRAND.
             <br />
-            <span className="text-blue-200">We Build Impact.</span>
+            <span className="text-primary-dark">We Build Impact.</span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-300 mb-8">

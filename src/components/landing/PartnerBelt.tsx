@@ -47,7 +47,7 @@ const PartnerBelt = () => {
                 className="!w-[260px] !h-[140px]"
             >
               <div className="w-full h-full rounded-2xl bg-[#879ee718] px-6 py-3 shadow-[0_8px_30px_rgba(0,0,0,0.04)] flex items-center justify-center">
-                <div className="relative h-18 w-full">
+                <div className="relative h-30 w-full">
                   <Image
                     src={item.logo}
                     alt={item.alt}

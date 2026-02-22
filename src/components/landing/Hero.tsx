@@ -25,7 +25,7 @@ const stats = [
   },
   {
     label: "Campaigns",
-    val: "50+",
+    val: "100+",
     icon: <GoGoal size={26} className="text-white" />,
   },
   {
@@ -225,7 +225,7 @@ export default function Hero() {
               ))}
             </div>
             <div className="font-16 text-white font-medium">
-              <span className="text-white font-bold">10+</span> Brands Trust Us
+              <span className="text-white font-bold">250+</span> Brands Trust Us
             </div>
           </div>
         </div>

@@ -38,23 +38,23 @@ export default function Contact() {
               <div>
                 <p className="font-semibold text-white">Customer Support</p>
                 <a
-                  href="mailto:mastermediamain@gmail.com"
+                  href="mailto:hello@mastermediaofficial.com"
                   className="text-white/80 hover:text-white transition"
                 >
-                  mastermediamain@gmail.com
+                  hello@mastermediaofficial.com
                 </a>
               </div>
 
               <div>
                 <p className="font-semibold text-white">Business Inquiries</p>
                 <a
-                  href="mailto:mastermediamain@gmail.com"
+                  href="mailto:hello@mastermediaofficial.com"
                   className="text-white/80 hover:text-white transition"
                 >
-                  mastermediamain@gmail.com
+                  hello@mastermediaofficial.com
                 </a>
               </div>
-              <div>
+              {/* <div>
                 <p className="font-semibold text-white">Head Office</p>
                 <a
                   href="https://www.google.com/maps/place/Orai,+Uttar+Pradesh"
@@ -62,7 +62,7 @@ export default function Contact() {
                 >
                   Orai, Uttar Pradesh – 285001 (India)
                 </a>
-              </div>
+              </div> */}
               <div>
                 <Link href="/">
                   <Image

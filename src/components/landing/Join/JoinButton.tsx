@@ -22,7 +22,7 @@ export default function JoinButton({ onClick }: { onClick: () => void }) {
         -rotate-90
       "
     >
-      Join Us
+      Connect with Us
     </motion.button>
   );
 }

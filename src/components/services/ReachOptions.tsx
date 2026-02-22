@@ -15,7 +15,7 @@ export default function ReachOptions() {
           Let’s Connect With Master Media
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-1 gap-8">
           {/* CARD 1 */}
           <AnimatedCard
             icon={<FiPhoneCall size={26} />}
@@ -26,13 +26,13 @@ export default function ReachOptions() {
           />
 
           {/* CARD 2 */}
-          <AnimatedCard
+          {/* <AnimatedCard
             icon={<FiHelpCircle size={26} />}
             title="Product & Campaign Support"
             desc="Need guidance on your project or campaign? Our team is ready to help you move forward with clarity and confidence."
             buttonText="Request Support"
             onClick={() => setOpen(true)}
-          />
+          /> */}
         </div>
       </div>
 

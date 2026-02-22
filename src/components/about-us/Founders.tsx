@@ -9,7 +9,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 const founders = [
   {
     name: "Mr. Abhi Gupta",
-    role: "CEO & Co-Founder",
+    role: "Co-Founder",
     image: "/images/Abhi_Gupta.webp",
     bio: `The brain behind the brand. Vision-driven and relentlessly curious.
           Abhi believes marketing isn’t about selling 
