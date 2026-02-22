@@ -90,7 +90,7 @@ function FlipCard({ founder, isActive, onHover, onLeave }: any) {
           className="absolute inset-0 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden"
           style={{ backfaceVisibility: "hidden" }}
         >
-          <div className="relative w-full h-[75%]">
+          <div className="relative w-full h-[65%] sm:h-[75%]">
             <Image
               src={founder.image}
               alt={founder.name}
@@ -101,7 +101,7 @@ function FlipCard({ founder, isActive, onHover, onLeave }: any) {
           </div>
 
           <div className="p-4 text-center">
-            <h3 className="font-24 font-bold text-primary">{founder.name}</h3>
+            <h3 className="font-bold text-primary">{founder.name}</h3>
             <p className="text-gray text-sm mt-1">{founder.role}</p>
           </div>
         </div>
@@ -113,14 +113,14 @@ function FlipCard({ founder, isActive, onHover, onLeave }: any) {
             bg-primary text-white rounded-xl
             shadow-xl
             flex flex-col items-center justify-center
-            p-8
+            p-5 sm:p-8
           "
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
-          <p className="text-lg leading-relaxed text-center">{founder.bio}</p>
+          <p className="text-[13px] sm:text-base leading-relaxed text-center">{founder.bio}</p>
 
           {founder.linkedin && (
             <Link
@@ -128,8 +128,8 @@ function FlipCard({ founder, isActive, onHover, onLeave }: any) {
               target="_blank"
               rel="noopener noreferrer"
               className="
-              mt-8 inline-flex items-center justify-center
-              w-12 h-12
+              mt-3 sm:mt-8 inline-flex items-center justify-center
+              w-10 h-10 sm:w-12 sm:h-12
               rounded-full shrink-0
               bg-white text-[#324dd3]
               transition-all duration-300
