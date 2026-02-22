@@ -175,10 +175,10 @@ export default function Privacy() {
       >
         For privacy-related inquiries contact us at{" "}
         <a
-          href="mailto:mastermediamain@gmail.com"
+          href="mailto:hello@mastermediaofficial.com"
           className="text-[#324dd3] underline font-medium hover:underline"
         >
-          mastermediamain@gmail.com
+          hello@mastermediaofficial.com
         </a>
       </motion.div>
     </section>
