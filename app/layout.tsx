@@ -46,7 +46,14 @@ export const metadata: Metadata = {
   },
   description:
     "Master Media is a creative digital agency delivering modern websites, branding, and digital solutions.",
-
+   keywords: [
+    "Master Media",
+    "Digital Agency",
+    "Web Development",
+    "Branding",
+    "UI UX Design",
+  ],
+  manifest: "/manifest.json",
   metadataBase: new URL("https://www.mastermediaofficial.com"),
 
   openGraph: {
