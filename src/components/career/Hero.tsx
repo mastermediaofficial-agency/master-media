@@ -12,15 +12,11 @@ function Hero() {
           className="font-extrabold leading-none"
         >
           <h1 className="text-[clamp(4rem,7vw,5rem)] tracking-tight">
-            <span className="block text-transparent [text-shadow:1.5px_1.5px_0_#facc15,-1.5px_1.5px_0_#facc15,1.5px_-1.5px_0_#facc15,-1.5px_-1.5px_0_#facc15]">
+            <span className="block text-transparent [text-shadow:0.2px_0.2px_0_#facc15,-0.2px_0.2px_0_#facc15,0.5px_-0.2px_0_#facc15,-0.2px_-0.2px_0_#facc15]">
               Master Media,
             </span>
-            <span className="block text-transparent stroke-text">
-              HOW
-            </span>
-            <span className="block text-transparent stroke-text">
-              WHY
-            </span>
+            <span className="block text-transparent stroke-text">HOW</span>
+            <span className="block text-transparent stroke-text">WHY</span>
             <span className="block text-gray-300">WHAT ?</span>
           </h1>
         </motion.div>

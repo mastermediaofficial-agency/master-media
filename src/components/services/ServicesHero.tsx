@@ -26,7 +26,7 @@ export default function ServicesHero() {
       <p className="text-gray-400 font-18">
         We don&apos;t do boring marketing.
         <br />
-        We build brands, break patterns, and create growth stories that resonate.
+        We build brands, break patterns, and create growth with our mastery.
       </p>
     </motion.div>
   );

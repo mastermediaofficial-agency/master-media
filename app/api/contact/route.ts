@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 
 type ContactPayload = {
   name: string;
-  email: string;
-  phone: string;
-  message: string;
+  email?: string;
+  phone?: string;
+  message?: string;
 };
 
 export async function POST(req: Request) {
@@ -28,9 +28,17 @@ export async function POST(req: Request) {
     );
   }
 
-  if (!payload.name || !payload.email || !payload.phone || !payload.message) {
+  const hasEmail = payload.email && payload.email.trim() !== "";
+  const hasPhone = payload.phone && payload.phone.trim() !== "";
+
+  if (!payload.name) {
+    return NextResponse.json({ error: "Name is required." }, { status: 400 });
+  }
+
+  // ✅ Email OR Phone required
+  if (!hasEmail && !hasPhone) {
     return NextResponse.json(
-      { error: "Missing required fields." },
+      { error: "Email or phone number is required." },
       { status: 400 },
     );
   }

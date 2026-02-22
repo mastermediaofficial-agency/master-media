@@ -3,27 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import PolicySection from "@/src/components/privacy/PolicySection";
 import { motion, Variants } from "framer-motion";
+import { containerVariants, fadeUp } from "@/src/types/lib/animations";
 
-export const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 60 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
 
 const sections = [
   {

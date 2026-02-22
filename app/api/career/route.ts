@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 
 type CareerPayload = {
   name: string;
-  email: string;
-  phone: string;
-  resume_link: string;
+  email?: string;
+  phone?: string;
+  resume_link?: string;
   linkedin_url: string;
-  message: string;
+  message?: string;
 };
 
 export async function POST(req: Request) {
@@ -31,15 +31,20 @@ export async function POST(req: Request) {
     );
   }
 
-  if (
-    !payload.name ||
-    !payload.email ||
-    !payload.phone ||
-    !payload.resume_link ||
-    !payload.linkedin_url
-  ) {
+  const hasEmail = payload.email && payload.email.trim() !== "";
+  const hasPhone = payload.phone && payload.phone.trim() !== "";
+
+  if (!payload.name || !payload.linkedin_url) {
     return NextResponse.json(
       { error: "Missing required fields." },
+      { status: 400 },
+    );
+  }
+
+  // ✅ Email OR Phone required
+  if (!hasEmail && !hasPhone) {
+    return NextResponse.json(
+      { error: "Email or phone number is required." },
       { status: 400 },
     );
   }

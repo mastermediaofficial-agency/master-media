@@ -5,21 +5,51 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const schema = z.object({
-  name: z
-    .string()
-    .min(2, "Name must be at least 2 characters")
-    .max(50, "Name is too long")
-    .regex(/^[a-zA-Z\s]+$/, "Name can only contain letters"),
+const schema = z
+  .object({
+    name: z
+      .string()
+      .min(2, "Name must be at least 2 characters")
+      .max(50, "Name is too long")
+      .regex(/^[a-zA-Z\s]+$/, "Name can only contain letters"),
 
-  email: z.string().email("Enter a valid email address").max(100),
+    email: z
+      .string()
+      .email("Enter a valid email address")
+      .max(100)
+      .optional()
+      .or(z.literal("")),
 
-  phone: z
-    .string()
-    .regex(/^[6-9]\d{9}$/, "Enter a valid 10-digit Indian phone number"),
+    phone: z
+      .string()
+      .regex(/^[6-9]\d{9}$/, "Enter a valid 10-digit Indian phone number")
+      .optional()
+      .or(z.literal("")),
 
-  message: z.string().max(500, "Message too long").optional().or(z.literal("")), // allows empty string
-});
+    message: z
+      .string()
+      .max(500, "Message too long")
+      .optional()
+      .or(z.literal("")),
+  })
+  .superRefine((data, ctx) => {
+    const hasEmail = data.email?.trim();
+    const hasPhone = data.phone?.trim();
+
+    if (!hasEmail && !hasPhone) {
+      ctx.addIssue({
+        path: ["email"],
+        message: "Email or phone number is required",
+        code: z.ZodIssueCode.custom,
+      });
+
+      ctx.addIssue({
+        path: ["phone"],
+        message: "Email or phone number is required",
+        code: z.ZodIssueCode.custom,
+      });
+    }
+  });
 
 type FormData = z.infer<typeof schema>;
 
@@ -110,7 +140,7 @@ export default function ContactForm() {
               className="block text-sm font-medium text-slate-700"
             >
               {field.label}
-              <span className="text-red-500">*</span>
+              <span className="text-red-500">{""}</span>
             </label>
 
             <input

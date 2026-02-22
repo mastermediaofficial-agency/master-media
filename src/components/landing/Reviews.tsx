@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import {
   FaStar,
   FaQuoteLeft,
+  FaStarHalfAlt,
+  FaRegStar,
   // FaChevronLeft,
   // FaChevronRight,
 } from "react-icons/fa";
@@ -19,32 +21,60 @@ import "swiper/css/pagination";
 
 const reviews = [
   {
-    name: "Rajesh Kumar",
-    role: "Founder, TechStartup",
+    name: "Marketing Head",
+    role: "MakeMyTrip",
     review:
-      "Master Media ne hamari brand ko zero se hero bana diya. Strategy, creatives aur execution — sab next level. 90 days mein growth visibly explode ho gaya.",
-    rating: 5,
+      "Master Media has been the strategic engine behind our digital expansion. The team’s ability to architect a roadmap for market dominance is unparalleled. They don’t just post; they engineer authority.",
+    rating: 4.5,
   },
   {
-    name: "Ananya Sharma",
-    role: "Marketing Head, D2C Brand",
+    name: "CEO",
+    role: "Loganster",
     review:
-      "Honestly, MasterMedia ke saath kaam karna ek premium experience raha. Team proactive hai, results-focused aur execution flawless.",
+      "At Loganster, we settle for nothing less than perfection. The team delivered exactly that—surgical precision in every creative and technical execution. Truly a masterclass in brand management.",
+    rating: 4.5,
+  },
+  {
+    name: "Director",
+    role: "Aeropath Global",
+    review:
+      "Surgical precision is the only way to describe Master Media’s approach. The team replaced our guesswork with calculated growth strategies that actually move the needle. The results have been inevitable.",
     rating: 4,
   },
   {
-    name: "Amit Verma",
-    role: "Co-Founder, SaaS Company",
+    name: "Founder",
+    role: "Dezine Acharya",
     review:
-      "They don’t just run campaigns — they build brands. Strong creative direction with performance-driven mindset. Highly recommended.",
+      "Finding an agency that understands finesse is rare. Master Media took our vision at Dezine Acharya and turned it into a world-class digital reality. Their elite industry experience shows in every deliverable.",
+    rating: 4.5,
+  },
+  {
+    name: "Managing Director",
+    role: "Krescente",
+    review:
+      "Working with Aman and Abhi Gupta has been a transformative experience for Krescente. They are the architects of our digital success, ensuring every campaign is defined by expert execution and measurable impact.",
     rating: 4,
   },
   {
-    name: "Priya Patel",
-    role: "Product Manager, E-commerce Startup",
+    name: "COO",
+    role: "Gimpex",
     review:
-      "MasterMedia transformed our brand presence in just 3 months. Their strategic approach and attention to detail are unmatched.",
-    rating: 5,
+      "Master Media doesn’t provide fluff; they provide results. Their commitment to uncompromising quality has helped us establish a dominant online presence in a crowded market. Professionalism at its peak.",
+    rating: 4.5,
+  },
+  {
+    name: "E-commerce Manager",
+    role: "Makhana Mantra",
+    review:
+      "The ‘Master’ standard is real. The strategic clarity they bring to the table, combined with Aman and Abhi’s guardian-like eye for detail, makes them the most elite squad we’ve partnered with.",
+    rating: 4,
+  },
+  {
+    name: "Head of Digital",
+    role: "MMT",
+    review:
+      "If you are serious about scaling your brand with world-class standards, Master Media is the only choice. They are more than an agency; they are the guardians of your brand’s digital legacy.",
+    rating: 4.5,
   },
 ];
 
@@ -148,15 +178,31 @@ function ReviewCard({
   review: string;
   rating: number;
 }) {
+  const fullStars = Math.floor(rating); // 4.5 → 4
+  const hasHalfStar = rating % 1 !== 0; // true if .5
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
   return (
     <div className="group relative bg-white rounded-3xl p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100">
       <div className="absolute -top-5 left-10 flex h-10 w-10 items-center justify-center rounded-xl bg-[#324dd3] text-white shadow-lg transform group-hover:rotate-12 transition-transform">
         <FaQuoteLeft size={14} />
       </div>
 
-      <div className="flex gap-1 text-yellow-400 mb-6">
+      {/* <div className="flex gap-1 text-yellow-400 mb-6">
         {Array.from({ length: rating }).map((_, i) => (
           <FaStar key={i} />
+        ))}
+      </div> */}
+
+      <div className="flex gap-1 text-yellow-400 mb-6">
+        {Array.from({ length: fullStars }).map((_, i) => (
+          <FaStar key={`full-${i}`} />
+        ))}
+
+        {hasHalfStar && <FaStarHalfAlt />}
+
+        {Array.from({ length: emptyStars }).map((_, i) => (
+          <FaRegStar key={`empty-${i}`} />
         ))}
       </div>
 

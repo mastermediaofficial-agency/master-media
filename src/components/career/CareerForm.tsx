@@ -6,35 +6,64 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
 
-const schema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(2, "Name must be at least 2 characters")
-    .max(50, "Name is too long")
-    .regex(/^[a-zA-Z\s]+$/, "Only letters allowed"),
+const schema = z
+  .object({
+    name: z
+      .string()
+      .trim()
+      .min(2, "Name must be at least 2 characters")
+      .max(50, "Name is too long")
+      .regex(/^[a-zA-Z\s]+$/, "Only letters allowed"),
 
-  email: z.string().trim().email("Enter a valid email address").max(100),
+    email: z
+      .string()
+      .trim()
+      .email("Enter a valid email address")
+      .max(100)
+      .optional()
+      .or(z.literal("")),
 
-  phone: z
-    .string()
-    .trim()
-    .regex(/^[6-9]\d{9}$/, "Enter valid 10-digit Indian number"),
+    phone: z
+      .string()
+      .trim()
+      .regex(/^[6-9]\d{9}$/, "Enter valid 10-digit Indian number")
+      .optional()
+      .or(z.literal("")),
 
-  resume_link: z
-    .string()
-    .trim()
-    .url("Enter valid resume URL (Drive / Dropbox etc.)"),
+    resume_link: z
+      .string()
+      .trim()
+      .url("Enter valid resume URL (Drive / Dropbox etc.)")
+      .optional()
+      .or(z.literal("")),
 
-  linkedin_url: z.string().trim().url("Enter valid LinkedIn profile URL"),
+    linkedin_url: z.string().trim().url("Enter valid LinkedIn profile URL"),
 
-  message: z
-    .string()
-    .trim()
-    .max(500, "Message too long")
-    .optional()
-    .or(z.literal("")),
-});
+    message: z
+      .string()
+      .trim()
+      .max(500, "Message too long")
+      .optional()
+      .or(z.literal("")),
+  })
+  .superRefine((data, ctx) => {
+    const hasEmail = !!data.email?.trim();
+    const hasPhone = !!data.phone?.trim();
+
+    if (!hasEmail && !hasPhone) {
+      ctx.addIssue({
+        path: ["email"],
+        message: "Email or phone number is required",
+        code: z.ZodIssueCode.custom,
+      });
+
+      ctx.addIssue({
+        path: ["phone"],
+        message: "Email or phone number is required",
+        code: z.ZodIssueCode.custom,
+      });
+    }
+  });
 
 type FormData = z.infer<typeof schema>;
 
@@ -100,11 +129,11 @@ export default function CareerForm() {
         >
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {[
-              ["name", "Full Name*"],
-              ["email", "Email Address*"],
-              ["phone", "Phone Number*"],
-              ["resume_link", "Resume Link* (Drive / Dropbox)"],
-              ["linkedin_url", "LinkedIn Profile URL*"],
+              ["name", "Full Name"],
+              ["email", "Email Address"],
+              ["phone", "Phone Number"],
+              ["resume_link", "Resume Link (Drive / Dropbox)"],
+              ["linkedin_url", "LinkedIn Profile URL"],
             ].map(([key, label], index) => (
               <motion.div
                 key={key}

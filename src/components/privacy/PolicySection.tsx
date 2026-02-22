@@ -1,4 +1,4 @@
-import { fadeUp } from "@/app/privacy/page";
+import { fadeUp } from "@/src/types/lib/animations";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 

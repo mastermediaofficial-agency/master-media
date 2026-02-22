@@ -8,25 +8,18 @@ import { FaLinkedinIn } from "react-icons/fa";
 
 const founders = [
   {
-    name: "Mr. Abhi Gupta",
-    role: "Co-Founder",
+    name: "Mr. Abhi Gupta, The Guardian of Execution",
+    role: "Co-Founder & COO",
     image: "/images/Abhi_Gupta.webp",
-    bio: `The brain behind the brand. Vision-driven and relentlessly curious.
-          Abhi believes marketing isn’t about selling 
-          products — it’s about crafting stories that build trust and drive action. 
-          With a sharp eye for brand identity and growth strategy, he turns ideas into impact. 
-          When he’s not shaping campaigns, he’s already planning the next big move for Master Media.`,
-    linkedin: "https://linkedin.com/in/username",
+    bio: `Providing vision is not enough until, Abhi is the one who polishes it to perfection. He is the gatekeeper of the "Master Media" standard—where even a pixel out of place is one too many. With years of elite industry experience, he specializes in turning raw concepts into flawless digital realities. He is the calm in the creative storm, ensuring that every project we deliver is defined by expert finesse and measurable impact.`,
+    linkedin: "https://www.linkedin.com/in/abhigupta1811/",
   },
   {
-    name: "Mr. Aman Gupta",
-    role: "Co-Founder",
+    name: "Mr. Aman Gupta, The Master Architect",
+    role: "Co-Founder & CMO",
     image: "/images/Aman_Gupta.webp",
-    bio: `Strategic thinker. Vision architect. Calm in chaos.
-          Aman ensures Master Media doesn’t just follow trends — we create them. 
-          He connects long-term vision with practical execution, bringing clarity where things get complex. 
-          Quietly dependable and deeply analytical, he’s also the one the team turns to when problems need real solutions.`,
-    linkedin: "https://linkedin.com/in/username",
+    bio: `Every high-performing team needs a strategist who can see the finish line before the race even begins. Aman Gupta is the one drawing the blueprints for our digital dominance. If "Market Authority" were a high-stakes game, Aman would be five moves ahead. He replaces guesswork with surgical precision, ensuring every campaign is a masterclass in growth. He doesn't just lead; he sets the high-standard pulse that drives our entire squad toward perfection.`,
+    linkedin: "https://www.linkedin.com/in/aman-gupta-7315aa202/",
   },
 ];
 
