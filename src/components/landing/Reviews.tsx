@@ -215,8 +215,8 @@ function ReviewCard({
           {name.charAt(0)}
         </div>
         <div className="text-left">
-          <p className="font-bold text-slate-900 leading-none">{name}</p>
-          <p className="text-sm text-[#324dd3] mt-1 font-medium">{role}</p>
+          <p className="font-bold text-slate-900 leading-none">{role}</p>
+          <p className="text-sm text-[#324dd3] mt-1 font-medium">{name}</p>
         </div>
       </div>
     </div>
